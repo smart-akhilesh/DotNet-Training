@@ -1,0 +1,7 @@
+C:\Users\akhileshsing\source\repos\FirstAssignment\FirstAssignment\bin\Debug\FirstAssignment.exe.config
+C:\Users\akhileshsing\source\repos\FirstAssignment\FirstAssignment\bin\Debug\FirstAssignment.exe
+C:\Users\akhileshsing\source\repos\FirstAssignment\FirstAssignment\bin\Debug\FirstAssignment.pdb
+C:\Users\akhileshsing\source\repos\FirstAssignment\FirstAssignment\obj\Debug\FirstAssignment.csproj.AssemblyReference.cache
+C:\Users\akhileshsing\source\repos\FirstAssignment\FirstAssignment\obj\Debug\FirstAssignment.csproj.CoreCompileInputs.cache
+C:\Users\akhileshsing\source\repos\FirstAssignment\FirstAssignment\obj\Debug\FirstAssignment.exe
+C:\Users\akhileshsing\source\repos\FirstAssignment\FirstAssignment\obj\Debug\FirstAssignment.pdb
