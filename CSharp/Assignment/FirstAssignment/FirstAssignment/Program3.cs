@@ -7,33 +7,31 @@ namespace FirstAssignment
         public static void Main()
         {
             Console.WriteLine("Program to perform different operation");
-            Console.WriteLine("Enter first number:");
+            Console.Write("Enter first number : ");
             int firstnum = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Enter operation (+, -, *, /):");
+            Console.Write("Enter operation (+, -, *, /) : ");
             char operation = Convert.ToChar(Console.ReadLine());
-
-            Console.WriteLine("Enter second number:");
+            Console.Write("Enter second number : ");
             int secondnum = Convert.ToInt32(Console.ReadLine());
 
             switch (operation)
             {
                 case '+':
-                    Console.WriteLine($"{firstnum} + {secondnum} = {firstnum + secondnum}");
+                    Console.WriteLine($"Sum : {firstnum} + {secondnum} = {firstnum + secondnum}");
                     break;
 
                 case '-':
-                    Console.WriteLine($"{firstnum} - {secondnum} = {firstnum - secondnum}");
+                    Console.WriteLine($"Difference : {firstnum} - {secondnum} = {firstnum - secondnum}");
                     break;
 
                 case '*':
-                    Console.WriteLine($"{firstnum} * {secondnum} = {firstnum * secondnum}");
+                    Console.WriteLine($"Multiplication : {firstnum} * {secondnum} = {firstnum * secondnum}");
                     break;
 
                 case '/':
                     if (secondnum != 0)
                     {
-                        Console.WriteLine($"{firstnum} / {secondnum} = {firstnum / secondnum}");
+                        Console.WriteLine($"Division : {firstnum} / {secondnum} = {firstnum / secondnum}");
                     }
                     else
                     {

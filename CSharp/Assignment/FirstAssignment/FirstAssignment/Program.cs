@@ -12,9 +12,10 @@ namespace FirstAssignment
         static void numberChecker()
         {
             Console.WriteLine("Program to check first and second is equal or not");
-            Console.WriteLine("Enter first number");
+            Console.WriteLine();
+            Console.Write("Enter first number : ");
             int fnum = Convert.ToInt32(Console.ReadLine()); 
-            Console.WriteLine("Enter second number");
+            Console.Write("Enter second number : ");
             int snum = Convert.ToInt32(Console.ReadLine()); 
 
             if (fnum == snum)

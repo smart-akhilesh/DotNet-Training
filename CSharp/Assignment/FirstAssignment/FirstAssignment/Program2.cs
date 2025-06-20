@@ -7,7 +7,8 @@ namespace FirstAssignment
         public static void Main()
         {
             Console.WriteLine("Program to Check if the number is positive or negative");
-            Console.WriteLine("Enter the number");
+            Console.WriteLine();
+            Console.Write("Enter the number : ");
             int number = Convert.ToInt32(Console.ReadLine());
             if (number < 0)
             {
