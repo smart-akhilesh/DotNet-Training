@@ -13,7 +13,7 @@ namespace Assignment2
             swap(a, b);
             Console.Read();
         }
-        public static void swap(int a, int b)
+        static void swap(int a, int b)
         {
             int temp = a;
             a = b;

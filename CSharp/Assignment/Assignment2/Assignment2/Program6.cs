@@ -16,7 +16,7 @@ namespace Assignment2
             Console.Read();
         }
 
-        public static void CopyFirstArrToSec(int[] arr, int[] arr2)
+        static void CopyFirstArrToSec(int[] arr, int[] arr2)
         {
             for (int i = 0; i < arr.Length; i++)
             {
@@ -24,7 +24,7 @@ namespace Assignment2
             }
         }
 
-        public static void DisplayArraySec(int[] arr2)
+        static void DisplayArraySec(int[] arr2)
         {
             Console.Write("Second array data after copy : ");
             for (int i = 0; i < arr2.Length; i++)

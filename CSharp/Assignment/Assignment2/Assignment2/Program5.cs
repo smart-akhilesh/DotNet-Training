@@ -17,15 +17,15 @@ namespace Assignment2
             Console.Read();
         }
 
-        public static void InputArray(int[] arr)
+        static void InputArray(int[] arr)
         {
-            Console.WriteLine("Input Ten marks");
+            Console.Write("Input Ten marks : ");
             for (int i = 0; i < arr.Length; i++)
             {
                 arr[i] = Convert.ToInt32(Console.ReadLine());
             }
         }
-        public static void TotalAverMinMAx(int[] arr)
+        static void TotalAverMinMAx(int[] arr)
         {
             int min = arr[0];
             int max = arr[0];
@@ -48,7 +48,7 @@ namespace Assignment2
             Console.WriteLine("Maximum mark : {0}", max);
             Console.WriteLine("Minimum mark : {0}",min);
         }
-        public static void Ascending(int[] arr)
+        static void Ascending(int[] arr)
         {
             Console.Write("Marks in Ascending order : ");
             for (int i = 0; i < arr.Length; i++)
@@ -58,7 +58,7 @@ namespace Assignment2
             Console.WriteLine();
         }
 
-        public static void Descending(int[] arr)
+        static void Descending(int[] arr)
         {
             Console.Write("Marks in Descending order : ");
             for (int i = arr.Length - 1; i >= 0; i--)

@@ -13,7 +13,7 @@ namespace Assignment2
             Console.Read();
         }
 
-        public static void TotalAverMinMAx(int[] arr)
+        static void TotalAverMinMAx(int[] arr)
         {
             int min = arr[0];
             int max = arr[0];

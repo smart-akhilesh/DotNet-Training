@@ -16,7 +16,7 @@ namespace Assignment2
             Console.Read();
         }
 
-        public static void CheckWordEqual(string word1, string word2)
+        static void CheckWordEqual(string word1, string word2)
         {
             bool checkEqual = word1.Equals(word2);
             if (checkEqual == true)
