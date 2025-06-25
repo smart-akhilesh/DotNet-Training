@@ -1,1 +1,0 @@
-All Code challenge between training will be available in this folder
