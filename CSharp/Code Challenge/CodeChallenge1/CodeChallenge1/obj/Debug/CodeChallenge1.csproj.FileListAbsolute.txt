@@ -1,7 +1,0 @@
-C:\Users\akhileshsing\source\repos\CodeChallenge1\CodeChallenge1\bin\Debug\CodeChallenge1.exe.config
-C:\Users\akhileshsing\source\repos\CodeChallenge1\CodeChallenge1\bin\Debug\CodeChallenge1.exe
-C:\Users\akhileshsing\source\repos\CodeChallenge1\CodeChallenge1\bin\Debug\CodeChallenge1.pdb
-C:\Users\akhileshsing\source\repos\CodeChallenge1\CodeChallenge1\obj\Debug\CodeChallenge1.csproj.AssemblyReference.cache
-C:\Users\akhileshsing\source\repos\CodeChallenge1\CodeChallenge1\obj\Debug\CodeChallenge1.csproj.CoreCompileInputs.cache
-C:\Users\akhileshsing\source\repos\CodeChallenge1\CodeChallenge1\obj\Debug\CodeChallenge1.exe
-C:\Users\akhileshsing\source\repos\CodeChallenge1\CodeChallenge1\obj\Debug\CodeChallenge1.pdb

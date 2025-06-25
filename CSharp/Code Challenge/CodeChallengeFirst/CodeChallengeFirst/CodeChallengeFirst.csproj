@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7DBDC2C3-DB9A-4375-A867-5F7E4295BB07}</ProjectGuid>
+    <ProjectGuid>{05CDDE85-5DA2-4E81-BC6F-C552C95EEDF4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CodeChallenge1</RootNamespace>
-    <AssemblyName>CodeChallenge1</AssemblyName>
+    <RootNamespace>CodeChallengeFirst</RootNamespace>
+    <AssemblyName>CodeChallengeFirst</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CodeChallenge1.Program2</StartupObject>
+    <StartupObject>CodeChallengeFirst.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,8 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BankAccount.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Program2.cs" />
+    <Compile Include="Program3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
