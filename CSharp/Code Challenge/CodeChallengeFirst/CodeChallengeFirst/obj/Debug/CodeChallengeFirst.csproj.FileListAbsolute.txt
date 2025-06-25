@@ -1,7 +1,6 @@
 C:\Users\akhileshsing\source\repos\CodeChallengeFirst\CodeChallengeFirst\bin\Debug\CodeChallengeFirst.exe.config
 C:\Users\akhileshsing\source\repos\CodeChallengeFirst\CodeChallengeFirst\bin\Debug\CodeChallengeFirst.exe
 C:\Users\akhileshsing\source\repos\CodeChallengeFirst\CodeChallengeFirst\bin\Debug\CodeChallengeFirst.pdb
-C:\Users\akhileshsing\source\repos\CodeChallengeFirst\CodeChallengeFirst\obj\Debug\CodeChallengeFirst.csproj.AssemblyReference.cache
 C:\Users\akhileshsing\source\repos\CodeChallengeFirst\CodeChallengeFirst\obj\Debug\CodeChallengeFirst.csproj.CoreCompileInputs.cache
 C:\Users\akhileshsing\source\repos\CodeChallengeFirst\CodeChallengeFirst\obj\Debug\CodeChallengeFirst.exe
 C:\Users\akhileshsing\source\repos\CodeChallengeFirst\CodeChallengeFirst\obj\Debug\CodeChallengeFirst.pdb
