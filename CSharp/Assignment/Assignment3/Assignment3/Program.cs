@@ -4,10 +4,10 @@ namespace Assignment3
 {
     class Accounts
     {
-        private double accountNo;
-        private string customerName;
-        private string accountType;
-        private double balance;
+        double accountNo;
+        string customerName;
+        string accountType;
+        double balance;
         public Accounts(double accountNo, string customerName, string accountType)
         {
             this.accountNo = accountNo;
@@ -67,23 +67,16 @@ namespace Assignment3
         {
             Console.Write("Enter Account Number: ");
             double accNo = Convert.ToDouble(Console.ReadLine());
-
             Console.Write("Enter Customer Name: ");
             string name = Console.ReadLine();
-
             Console.Write("Enter Account Type (Saving/Current): ");
             string accType = Console.ReadLine();
-
             Accounts acc = new Accounts(accNo, name, accType);
-
             Console.Write("Enter Transaction Type (d for deposit / w for withdrawal): ");
             string transType = Console.ReadLine();
-
             Console.Write("Enter Amount: ");
             double amt = Convert.ToDouble(Console.ReadLine());
-
             acc.ProcessTransaction(transType, amt);
-
             acc.ShowData();
             Console.Read();
         }

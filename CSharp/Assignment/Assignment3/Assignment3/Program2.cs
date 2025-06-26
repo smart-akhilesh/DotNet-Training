@@ -88,8 +88,7 @@ namespace Assignment3
             s1.GetMarks();
             s1.DisplayResult();
             s1.DisplayData();
-
-            Console.ReadLine();
+            Console.Read();
         }
     }
 }
