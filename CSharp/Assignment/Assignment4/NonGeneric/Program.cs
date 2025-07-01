@@ -87,12 +87,7 @@ namespace NonGeneric
                 Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++");
                 Console.Write("Enter your choice: ");
 
-                bool validChoice = int.TryParse(Console.ReadLine(), out choice);
-                if (!validChoice)
-                {
-                    Console.WriteLine("Invalid input. Try again.");
-                    continue;
-                }
+                choice = Convert.ToInt32(Console.ReadLine());
 
                 switch (choice)
                 {
