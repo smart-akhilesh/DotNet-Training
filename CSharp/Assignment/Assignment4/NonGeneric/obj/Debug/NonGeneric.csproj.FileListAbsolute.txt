@@ -1,0 +1,7 @@
+C:\Users\akhileshsing\source\repos\NonGeneric\NonGeneric\bin\Debug\NonGeneric.exe.config
+C:\Users\akhileshsing\source\repos\NonGeneric\NonGeneric\bin\Debug\NonGeneric.exe
+C:\Users\akhileshsing\source\repos\NonGeneric\NonGeneric\bin\Debug\NonGeneric.pdb
+C:\Users\akhileshsing\source\repos\NonGeneric\NonGeneric\obj\Debug\NonGeneric.csproj.AssemblyReference.cache
+C:\Users\akhileshsing\source\repos\NonGeneric\NonGeneric\obj\Debug\NonGeneric.csproj.CoreCompileInputs.cache
+C:\Users\akhileshsing\source\repos\NonGeneric\NonGeneric\obj\Debug\NonGeneric.exe
+C:\Users\akhileshsing\source\repos\NonGeneric\NonGeneric\obj\Debug\NonGeneric.pdb
