@@ -32,27 +32,28 @@ namespace NonGeneric
 
         public void UpdateEmpDetail(int id)
         {
-            bool found = false;
-            foreach (var item in emplist)
+            var employee = emplist.Find(e => e.EmpID == id);
+            if (employee != null)
             {
-                if (item.EmpID == id)
+                try
                 {
-                    Console.WriteLine("Enter New Name:");
-                    item.EmpName = Console.ReadLine();
+                    Console.Write("Enter New Name: ");
+                    employee.EmpName = Console.ReadLine();
 
-                    Console.WriteLine("Enter New Department:");
-                    item.Department = Console.ReadLine();
+                    Console.Write("Enter New Department: ");
+                    employee.Department = Console.ReadLine();
 
-                    Console.WriteLine("Enter New Salary:");
-                    item.Salary = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter New Salary: ");
+                    employee.Salary = Convert.ToDouble(Console.ReadLine());
 
                     Console.WriteLine("Update Successful.");
-                    found = true;
-                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid salary input. Update failed.");
                 }
             }
-
-            if (!found)
+            else
             {
                 Console.WriteLine("Employee Not Found.");
             }
@@ -61,10 +62,7 @@ namespace NonGeneric
         public void DeleteEmployee(int id)
         {
             int removedCount = emplist.RemoveAll(e => e.EmpID == id);
-            if (removedCount > 0)
-                Console.WriteLine("Delete Successful.");
-            else
-                Console.WriteLine("Employee Not Found.");
+            Console.WriteLine(removedCount > 0 ? "Delete Successful." : "Employee Not Found.");
         }
     }
 
@@ -73,7 +71,7 @@ namespace NonGeneric
         static void Main(string[] args)
         {
             EmployeeManager manager = new EmployeeManager();
-            int choice;
+            int choice = 0;
 
             do
             {
@@ -87,86 +85,106 @@ namespace NonGeneric
                 Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++");
                 Console.Write("Enter your choice: ");
 
-                choice = Convert.ToInt32(Console.ReadLine());
-
-                switch (choice)
+                try
                 {
-                    case 1:
-                        Employee newEmp = new Employee();
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a valid number.");
+                    continue;
+                }
 
-                        Console.Write("Enter Employee ID: ");
-                        newEmp.EmpID = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            Employee emp = new Employee();
 
-                        Console.Write("Enter Employee Name: ");
-                        newEmp.EmpName = Console.ReadLine();
+                            Console.Write("Enter Employee ID: ");
+                            emp.EmpID = Convert.ToInt32(Console.ReadLine());
 
-                        Console.Write("Enter Department: ");
-                        newEmp.Department = Console.ReadLine();
+                            Console.Write("Enter Employee Name: ");
+                            emp.EmpName = Console.ReadLine();
 
-                        Console.Write("Enter Salary: ");
-                        newEmp.Salary = Convert.ToDouble(Console.ReadLine());
+                            Console.Write("Enter Department: ");
+                            emp.Department = Console.ReadLine();
 
-                        manager.AddEmployee(newEmp);
-                        Console.WriteLine("Employee Added Successfully.");
-                        break;
+                            Console.Write("Enter Salary: ");
+                            emp.Salary = Convert.ToDouble(Console.ReadLine());
 
-                    case 2:
-                        var allEmployees = manager.DisplayEmployees();
-                        if (allEmployees.Count == 0)
-                        {
-                            Console.WriteLine("No employees to display.");
-                        }
-                        else
-                        {
-                            foreach (var emp in allEmployees)
+                            manager.AddEmployee(emp);
+                            Console.WriteLine("Employee Added Successfully.");
+                            break;
+
+                        case 2:
+                            List<Employee> allEmployees = manager.DisplayEmployees();
+                            if (allEmployees.Count == 0)
                             {
-                                Console.WriteLine($"ID: {emp.EmpID}, Name: {emp.EmpName}, Department: {emp.Department}, Salary: {emp.Salary}");
+                                Console.WriteLine("No employees found.");
                             }
-                        }
-                        break;
-
-                    case 3:
-                        Console.Write("Enter Employee ID to search: ");
-                        int searchId = Convert.ToInt32(Console.ReadLine());
-                        var foundEmployees = manager.SearchEmpDetail(searchId);
-                        if (foundEmployees.Count > 0)
-                        {
-                            foreach (var emp in foundEmployees)
+                            else
                             {
-                                Console.WriteLine($"ID: {emp.EmpID}, Name: {emp.EmpName}, Department: {emp.Department}, Salary: {emp.Salary}");
+                                Console.WriteLine("\n--- Employee List ---");
+                                foreach (var e in allEmployees)
+                                {
+                                    Console.WriteLine($"ID: {e.EmpID}, Name: {e.EmpName}, Dept: {e.Department}, Salary: {e.Salary}");
+                                }
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Employee not found.");
-                        }
-                        break;
+                            break;
 
-                    case 4:
-                        Console.Write("Enter Employee ID to update: ");
-                        int updateId = Convert.ToInt32(Console.ReadLine());
-                        manager.UpdateEmpDetail(updateId);
-                        break;
+                        case 3:
+                            Console.Write("Enter Employee ID to Search: ");
+                            int searchId = Convert.ToInt32(Console.ReadLine());
+                            List<Employee> found = manager.SearchEmpDetail(searchId);
 
-                    case 5:
-                        Console.Write("Enter Employee ID to delete: ");
-                        int deleteId = Convert.ToInt32(Console.ReadLine());
-                        manager.DeleteEmployee(deleteId);
-                        break;
+                            if (found.Count == 0)
+                            {
+                                Console.WriteLine("Employee not found.");
+                            }
+                            else
+                            {
+                                foreach (var e in found)
+                                {
+                                    Console.WriteLine($"ID: {e.EmpID}, Name: {e.EmpName}, Dept: {e.Department}, Salary: {e.Salary}");
+                                }
+                            }
+                            break;
 
-                    case 6:
-                        Console.WriteLine("Exiting program.");
-                        break;
+                        case 4:
+                            Console.Write("Enter Employee ID to Update: ");
+                            int updateId = Convert.ToInt32(Console.ReadLine());
+                            manager.UpdateEmpDetail(updateId);
+                            break;
 
-                    default:
-                        Console.WriteLine("Invalid choice. Please enter a number from 1 to 6.");
-                        break;
+                        case 5:
+                            Console.Write("Enter Employee ID to Delete: ");
+                            int deleteId = Convert.ToInt32(Console.ReadLine());
+                            manager.DeleteEmployee(deleteId);
+                            break;
+
+                        case 6:
+                            Console.WriteLine("Exiting program.");
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid choice. Please enter a number from 1 to 6.");
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input format. Please enter correct values.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Something went wrong: " + ex.Message);
                 }
 
             } while (choice != 6);
+
+            Console.Read();
         }
     }
 }
-
-
-
