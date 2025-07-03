@@ -1,0 +1,6 @@
+C:\Users\akhileshsing\source\repos\CodeChalenge2\CodeChalenge2\obj\Debug\CodeChalenge2.csproj.CoreCompileInputs.cache
+C:\Users\akhileshsing\source\repos\CodeChalenge2\CodeChalenge2\bin\Debug\CodeChalenge2.exe.config
+C:\Users\akhileshsing\source\repos\CodeChalenge2\CodeChalenge2\bin\Debug\CodeChalenge2.exe
+C:\Users\akhileshsing\source\repos\CodeChalenge2\CodeChalenge2\bin\Debug\CodeChalenge2.pdb
+C:\Users\akhileshsing\source\repos\CodeChalenge2\CodeChalenge2\obj\Debug\CodeChalenge2.exe
+C:\Users\akhileshsing\source\repos\CodeChalenge2\CodeChalenge2\obj\Debug\CodeChalenge2.pdb
