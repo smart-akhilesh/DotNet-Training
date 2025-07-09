@@ -1,0 +1,7 @@
+C:\Users\akhileshsing\source\repos\CodeChallenge_3\CodeChallenge_3\bin\Debug\CodeChallenge_3.exe.config
+C:\Users\akhileshsing\source\repos\CodeChallenge_3\CodeChallenge_3\bin\Debug\CodeChallenge_3.exe
+C:\Users\akhileshsing\source\repos\CodeChallenge_3\CodeChallenge_3\bin\Debug\CodeChallenge_3.pdb
+C:\Users\akhileshsing\source\repos\CodeChallenge_3\CodeChallenge_3\obj\Debug\CodeChallenge_3.csproj.AssemblyReference.cache
+C:\Users\akhileshsing\source\repos\CodeChallenge_3\CodeChallenge_3\obj\Debug\CodeChallenge_3.csproj.CoreCompileInputs.cache
+C:\Users\akhileshsing\source\repos\CodeChallenge_3\CodeChallenge_3\obj\Debug\CodeChallenge_3.exe
+C:\Users\akhileshsing\source\repos\CodeChallenge_3\CodeChallenge_3\obj\Debug\CodeChallenge_3.pdb
