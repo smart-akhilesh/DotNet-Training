@@ -1,0 +1,7 @@
+C:\Users\akhileshsing\source\repos\ADD_Assignment_!\ADD_Assignment_!\bin\Debug\ADD_Assignment_!.exe.config
+C:\Users\akhileshsing\source\repos\ADD_Assignment_!\ADD_Assignment_!\bin\Debug\ADD_Assignment_!.exe
+C:\Users\akhileshsing\source\repos\ADD_Assignment_!\ADD_Assignment_!\bin\Debug\ADD_Assignment_!.pdb
+C:\Users\akhileshsing\source\repos\ADD_Assignment_!\ADD_Assignment_!\obj\Debug\ADD_Assignment_!.csproj.AssemblyReference.cache
+C:\Users\akhileshsing\source\repos\ADD_Assignment_!\ADD_Assignment_!\obj\Debug\ADD_Assignment_!.csproj.CoreCompileInputs.cache
+C:\Users\akhileshsing\source\repos\ADD_Assignment_!\ADD_Assignment_!\obj\Debug\ADD_Assignment_!.exe
+C:\Users\akhileshsing\source\repos\ADD_Assignment_!\ADD_Assignment_!\obj\Debug\ADD_Assignment_!.pdb
