@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script>
+      
+        document.getElementById("container").innerHTML =
+            `<button id="Button">Click Me</button> `;
+
+        document.getElementById("Button").addEventListener("click", function () {
+            console.log("Button was clicked!");
+            alert("Button was clicked!");
+        });
+    </script>
+</body>
+</html>

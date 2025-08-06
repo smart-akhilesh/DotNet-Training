@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Multiply and Divide</title>
+    <style>
+        .active-button {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sample Form</h1><br /><br />
+
+    <label>1st Number :</label>
+    <input type="text" id="num1" /><br /><br />
+
+    <label>2nd Number :</label>
+    <input type="text" id="num2" /><br /><br />
+
+    <button id="btnMultiply" onclick="Multiply(this);">Multiply</button>
+    <button id="btnDivide" onclick="Divide(this);">Divide</button>
+
+    <div>
+        <p>The Result Is:</p>
+        <p id="result"></p>
+    </div>
+
+    <script>
+     
+        function Multiply(btn) {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+
+            var mulresult = num1 * num2;
+            document.getElementById('result').innerText = mulresult;
+
+            btn.classList.add('active-button');
+        }
+
+        function Divide(btn) {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+
+            var divresult = num1 / num2;
+            document.getElementById('result').innerText = divresult;
+          
+            btn.classList.add('active-button');
+        }
+    </script>
+</body>
+</html>

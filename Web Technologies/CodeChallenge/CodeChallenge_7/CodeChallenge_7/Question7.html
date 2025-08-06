@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+
+    <ul>
+        <li>CSHARP</li>
+        <li>SQL</li>
+        <li>ADO</li>
+    </ul>
+
+    <script>
+        $(document).ready(function () {
+            $('ul li').each(function (index) {
+                const Text = $(this).text();
+                $(this).text(index + ' ' + Text);
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Show First Element on Click</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>CSHARP</li>
+        <li>SQL</li>
+        <li>ADO</li>
+    </ul>
+
+    <button id="showFirst">Show First Element</button>
+    <div id="display"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#showFirst').click(function () {
+                var firstLiText = $('ul li').first().text();
+                $('#display').text(firstLiText);
+            });
+        });
+    </script>
+</body>
+</html>
+
