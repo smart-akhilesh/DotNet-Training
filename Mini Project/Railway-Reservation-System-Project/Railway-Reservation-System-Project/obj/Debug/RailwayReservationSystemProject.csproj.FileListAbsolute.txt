@@ -1,0 +1,7 @@
+C:\Users\akhileshsing\source\repos\Railway-Reservation-System-Project\Railway-Reservation-System-Project\bin\Debug\Railway-Reservation-System-Project.exe.config
+C:\Users\akhileshsing\source\repos\Railway-Reservation-System-Project\Railway-Reservation-System-Project\bin\Debug\Railway-Reservation-System-Project.exe
+C:\Users\akhileshsing\source\repos\Railway-Reservation-System-Project\Railway-Reservation-System-Project\bin\Debug\Railway-Reservation-System-Project.pdb
+C:\Users\akhileshsing\source\repos\Railway-Reservation-System-Project\Railway-Reservation-System-Project\obj\Debug\RailwayReservationSystemProject.csproj.AssemblyReference.cache
+C:\Users\akhileshsing\source\repos\Railway-Reservation-System-Project\Railway-Reservation-System-Project\obj\Debug\RailwayReservationSystemProject.csproj.CoreCompileInputs.cache
+C:\Users\akhileshsing\source\repos\Railway-Reservation-System-Project\Railway-Reservation-System-Project\obj\Debug\Railway-Reservation-System-Project.exe
+C:\Users\akhileshsing\source\repos\Railway-Reservation-System-Project\Railway-Reservation-System-Project\obj\Debug\Railway-Reservation-System-Project.pdb
