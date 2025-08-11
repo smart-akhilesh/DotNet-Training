@@ -5,6 +5,7 @@ using Railway_Reservation_System_Project.Services;
 using Railway_Reservation_System_Project.Exceptions;
 using Railway_Reservation_System_Project.Models;
 using Railway_Reservation_System_Project.Models.DTO;
+using Railway_Reservation_System_Project.Utils;
 
 namespace Railway_Reservation_System_Project.Client
 {
@@ -12,7 +13,7 @@ namespace Railway_Reservation_System_Project.Client
     {
         public static void Main(string[] args)
         {
-           
+
             Console.WriteLine("==== Railway Reservation Customer Console ====\n");
 
             ICustomerRepository customerRepo = new CustomerRepository();
@@ -27,16 +28,16 @@ namespace Railway_Reservation_System_Project.Client
                 Console.WriteLine("2. Register");
                 Console.WriteLine("3. Exit");
 
-                int firstChoice = ReadInt("Enter your choice: ");
+                int firstChoice = InputHelper.ReadInt("Enter your choice: ");
                 if (firstChoice == 1)
                 {
-                   
+
                     while (true)
                     {
                         try
                         {
-                            string emailId = ReadNonEmptyString("Email: ");
-                            string password = ReadNonEmptyString("Password: ");
+                            string emailId = InputHelper.ReadString("Email: ");
+                            string password = InputHelper.ReadString("Password: ");
 
                             if (customerService.Login(emailId, password, out loggedInCustomerId))
                             {
@@ -61,7 +62,7 @@ namespace Railway_Reservation_System_Project.Client
                             Console.WriteLine($"Unexpected error: {ex.Message}");
                         }
                     }
-                    break; 
+                    break;
                 }
                 else if (firstChoice == 2)
                 {
@@ -98,7 +99,7 @@ namespace Railway_Reservation_System_Project.Client
                 Console.WriteLine("4. Cancel Passenger Ticket");
                 Console.WriteLine("5. Logout");
 
-                int choice = ReadInt("Enter your choice: ");
+                int choice = InputHelper.ReadInt("Enter your choice: ");
 
                 try
                 {
@@ -147,15 +148,15 @@ namespace Railway_Reservation_System_Project.Client
             }
         }
 
-        // === Registration method ===
+
         private static void RegisterCustomer(ICustomerService service)
         {
             Console.WriteLine("\n--- Register New Customer ---");
-            string name = ReadNonEmptyString("Name: ");
-            int age = ReadInt("Age: ");
-            string phone = ReadNonEmptyString("Phone: ");
-            string emailId = ReadNonEmptyString("Email: ");
-            string password = ReadNonEmptyString("Password: ");
+            string name = InputHelper.ReadString("Name: ");
+            int age = InputHelper.ReadInt("Age: ");
+            string phone = InputHelper.ReadString("Phone: ");
+            string emailId = InputHelper.ReadString("Email: ");
+            string password = InputHelper.ReadString("Password: ");
 
             Customer newCustomer = new Customer
             {
@@ -176,9 +177,9 @@ namespace Railway_Reservation_System_Project.Client
 
         private static void SearchTrains(ICustomerService service)
         {
-            string source = ReadNonEmptyString("Source: ");
-            string destination = ReadNonEmptyString("Destination: ");
-            DateTime travelDate = ReadDate("Travel Date (yyyy-MM-dd): ");
+            string source = InputHelper.ReadString("Source: ");
+            string destination = InputHelper.ReadString("Destination: ");
+            DateTime travelDate = InputHelper.ReadDate("Travel Date (yyyy-MM-dd): ");
 
             var trains = service.ViewTrainsByRoute(source, destination, travelDate);
             if (trains == null || trains.Count == 0)
@@ -201,9 +202,9 @@ namespace Railway_Reservation_System_Project.Client
 
         private static void BookTicket(ICustomerService service, int customerId)
         {
-            string trainNo = ReadNonEmptyString("Train No: ");
-            string classType = ReadNonEmptyString("Class Type (Sleeper/AC3/AC2): ");
-            DateTime travelDate = ReadDate("Travel Date (yyyy-MM-dd): ");
+            string trainNo = InputHelper.ReadString("Train No: ");
+            string classType = InputHelper.ReadString("Class Type (Sleeper/AC3/AC2): ");
+            DateTime travelDate = InputHelper.ReadDate("Travel Date (yyyy-MM-dd): ");
 
             var seatInfo = service.GetAvailableSeatsAndPrice(trainNo, travelDate, classType);
             Console.WriteLine($"Available seats in {classType}: {seatInfo.availableSeats}, Price per seat: {seatInfo.price}");
@@ -214,7 +215,7 @@ namespace Railway_Reservation_System_Project.Client
                 return;
             }
 
-            int totalPassengers = ReadInt($"Number of passengers to book (max {seatInfo.availableSeats}): ");
+            int totalPassengers = InputHelper.ReadInt($"Number of passengers to book (max {seatInfo.availableSeats}): ");
             if (totalPassengers <= 0 || totalPassengers > seatInfo.availableSeats)
             {
                 Console.WriteLine($"Invalid passenger count. Must be 1..{seatInfo.availableSeats}");
@@ -227,13 +228,13 @@ namespace Railway_Reservation_System_Project.Client
                 Console.WriteLine($"\nPassenger {i + 1}");
                 passengers.Add(new Passenger
                 {
-                    PassengerName = ReadNonEmptyString("Name: "),
-                    Age = ReadInt("Age: "),
-                    Gender = ReadNonEmptyString("Gender (M/F): ")
+                    PassengerName = InputHelper.ReadString("Name: "),
+                    Age = InputHelper.ReadInt("Age: "),
+                    Gender = InputHelper.ReadString("Gender (M/F): ")
                 });
             }
 
-            string paymentMethod = ReadNonEmptyString("Payment Method (cash/card/upi): ");
+            string paymentMethod = InputHelper.ReadString("Payment Method (cash/card/upi): ");
 
             string pnr = service.BookTicket(customerId, trainNo, classType, travelDate, totalPassengers, paymentMethod, passengers);
             if (!string.IsNullOrWhiteSpace(pnr))
@@ -244,7 +245,7 @@ namespace Railway_Reservation_System_Project.Client
 
         private static void ViewBookingByPNR(ICustomerService service)
         {
-            string pnr = ReadNonEmptyString("Enter PNR: ");
+            string pnr = InputHelper.ReadString("Enter PNR: ");
             BookingDetailsDTO bookingDetails = service.ViewBookingDetailsByPNR(pnr);
 
             if (bookingDetails == null || bookingDetails.Booking == null)
@@ -281,15 +282,15 @@ namespace Railway_Reservation_System_Project.Client
                         + (p.BerthType ?? "-") + "  "
                         + (p.Status ?? "-"));
                 }
-            
+
 
             }
-       }
+        }
 
-  
+
         private static void CancelPassengerTicket(ICustomerService service)
         {
-            string pnr = ReadNonEmptyString("Enter PNR: ");
+            string pnr = InputHelper.ReadString("Enter PNR: ");
             BookingDetailsDTO dto = null;
             try
             {
@@ -313,12 +314,12 @@ namespace Railway_Reservation_System_Project.Client
                 Console.WriteLine($"  {p.PassengerId} : {p.PassengerName} (Age {p.Age}, {p.Gender}) - Status: {p.Status}");
             }
 
-            int passengerId = ReadInt("Enter Passenger ID to cancel: ");
+            int passengerId = InputHelper.ReadInt("Enter Passenger ID to cancel: ");
             decimal refund = service.CancelPassengerTicket(pnr, passengerId);
 
-            if (refund >= 0m)
+            if (refund >= 0)
             {
-                if (refund > 0m)
+                if (refund > 0)
                     Console.WriteLine($"Cancellation successful. Refund: {refund}");
                 else
                     Console.WriteLine("Cancellation successful. No refund applicable.");
@@ -329,38 +330,5 @@ namespace Railway_Reservation_System_Project.Client
             }
         }
 
-        // === Helper methods ===
-        private static int ReadInt(string prompt)
-        {
-            while (true)
-            {
-                Console.Write(prompt);
-                string s = Console.ReadLine();
-                if (int.TryParse(s, out int v)) return v;
-                Console.WriteLine("Invalid number. Try again.");
-            }
-        }
-
-        private static DateTime ReadDate(string prompt)
-        {
-            while (true)
-            {
-                Console.Write(prompt);
-                string s = Console.ReadLine();
-                if (DateTime.TryParse(s, out DateTime dt)) return dt.Date;
-                Console.WriteLine("Invalid date. Use format yyyy-MM-dd.");
-            }
-        }
-
-        private static string ReadNonEmptyString(string prompt)
-        {
-            while (true)
-            {
-                Console.Write(prompt);
-                string s = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(s)) return s.Trim();
-                Console.WriteLine("Input cannot be empty. Try again.");
-            }
-        }
     }
 }
