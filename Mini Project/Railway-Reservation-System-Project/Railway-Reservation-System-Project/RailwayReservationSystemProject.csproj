@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Railway_Reservation_System_Project.Client.AdminClient</StartupObject>
+    <StartupObject>Railway_Reservation_System_Project.Client.CustomerClient</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

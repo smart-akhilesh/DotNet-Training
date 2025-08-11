@@ -12,34 +12,22 @@ namespace Railway_Reservation_System_Project.Repositories
     {
         public bool Login(Admin admin)
         {
-            var con = DbConnection.GetConnection();
-            try
+            using (var con = DbConnection.GetConnection())
+            using (var cmd = new SqlCommand("VerifyAdminLogin", con) { CommandType = CommandType.StoredProcedure })
             {
-                var cmd = new SqlCommand("VerifyAdminLogin", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
                 cmd.Parameters.AddWithValue("@Username", admin.Username);
                 cmd.Parameters.AddWithValue("@Password", admin.Password);
 
                 int count = (int)cmd.ExecuteScalar();
                 return count > 0;
             }
-            finally
-            {
-                con.Close();
-            }
         }
 
         public bool InsertTrain(Train train)
         {
-            var con = DbConnection.GetConnection();
-            try
+            using (var con = DbConnection.GetConnection())
+            using (var cmd = new SqlCommand("InsertTrain", con) { CommandType = CommandType.StoredProcedure })
             {
-                var cmd = new SqlCommand("InsertTrain", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
                 cmd.Parameters.AddWithValue("@Trainno", train.TrainNo);
                 cmd.Parameters.AddWithValue("@Trainname", train.TrainName);
                 cmd.Parameters.AddWithValue("@Source", train.Source);
@@ -53,22 +41,14 @@ namespace Railway_Reservation_System_Project.Repositories
 
                 cmd.ExecuteNonQuery();
                 return true;
-            }
-            finally
-            {
-                con.Close();
             }
         }
 
         public bool UpdateTrain(Train train)
         {
-            var con = DbConnection.GetConnection();
-            try
+            using (var con = DbConnection.GetConnection())
+            using (var cmd = new SqlCommand("UpdateTrain", con) { CommandType = CommandType.StoredProcedure })
             {
-                var cmd = new SqlCommand("UpdateTrain", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
                 cmd.Parameters.AddWithValue("@Trainno", train.TrainNo);
                 cmd.Parameters.AddWithValue("@Trainname", train.TrainName);
                 cmd.Parameters.AddWithValue("@Source", train.Source);
@@ -83,139 +63,105 @@ namespace Railway_Reservation_System_Project.Repositories
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            finally
-            {
-                con.Close();
-            }
         }
 
         public bool DeleteTrain(string trainNo)
         {
-            var con = DbConnection.GetConnection();
-            try
+            using (var con = DbConnection.GetConnection())
+            using (var cmd = new SqlCommand("DeleteTrain", con) { CommandType = CommandType.StoredProcedure })
             {
-                var cmd = new SqlCommand("DeleteTrain", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
                 cmd.Parameters.AddWithValue("@Trainno", trainNo);
-
                 cmd.ExecuteNonQuery();
                 return true;
-            }
-            finally
-            {
-                con.Close();
             }
         }
 
         public BookingRevenueReport GetTotalBookingsAndRevenue(DateTime startDate, DateTime endDate)
         {
-            var con = DbConnection.GetConnection();
-            try
+            using (var con = DbConnection.GetConnection())
+            using (var cmd = new SqlCommand("GetTotalBookingsAndRevenueByDate", con) { CommandType = CommandType.StoredProcedure })
             {
-                var cmd = new SqlCommand("GetTotalBookingsAndRevenueByDate", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
                 cmd.Parameters.AddWithValue("@StartDate", startDate);
                 cmd.Parameters.AddWithValue("@EndDate", endDate);
 
-                var dr = cmd.ExecuteReader();
-
-                var report = new BookingRevenueReport
+                using (var dr = cmd.ExecuteReader())
                 {
-                    StartDate = startDate,
-                    EndDate = endDate,
-                    TotalBookings = 0,
-                    TotalRevenue = 0
-                };
+                    var report = new BookingRevenueReport
+                    {
+                        StartDate = startDate,
+                        EndDate = endDate,
+                        TotalBookings = 0,
+                        TotalRevenue = 0
+                    };
 
-                if (dr.Read())
-                {
-                    report.TotalBookings = dr.GetInt32(dr.GetOrdinal("TotalBookings"));
-                    report.TotalRevenue = dr.GetDecimal(dr.GetOrdinal("TotalRevenue"));
+                    if (dr.Read())
+                    {
+                        report.TotalBookings = Convert.ToInt32(dr["TotalBookings"]);
+                        report.TotalRevenue = Convert.ToDecimal(dr["TotalRevenue"]);
+                    }
+
+                    return report;
                 }
-
-                return report;
-            }
-            finally
-            {
-                con.Close();
             }
         }
 
         public List<TrainBookingReport> GetBookingsPerTrain(DateTime startDate, DateTime endDate)
         {
             var list = new List<TrainBookingReport>();
-            var con = DbConnection.GetConnection();
 
-            try
+            using (var con = DbConnection.GetConnection())
+            using (var cmd = new SqlCommand("GetBookingsPerTrainByDate", con) { CommandType = CommandType.StoredProcedure })
             {
-                var cmd = new SqlCommand("GetBookingsPerTrainByDate", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
                 cmd.Parameters.AddWithValue("@StartDate", startDate);
                 cmd.Parameters.AddWithValue("@EndDate", endDate);
 
-                var dr = cmd.ExecuteReader();
-
-                while (dr.Read())
+                using (var dr = cmd.ExecuteReader())
                 {
-                    list.Add(new TrainBookingReport
+                    while (dr.Read())
                     {
-                        TrainNo = dr["Trainno"].ToString(),
-                        TrainName = dr["Trainname"].ToString(),
-                        TotalBookings = dr.GetInt32(dr.GetOrdinal("TotalBookings"))
-                    });
+                        list.Add(new TrainBookingReport
+                        {
+                            TrainNo = dr["Trainno"].ToString(),
+                            TrainName = dr["Trainname"].ToString(),
+                            TotalBookings = Convert.ToInt32(dr["TotalBookings"])
+                        });
+                    }
                 }
+            }
 
-                return list;
-            }
-            finally
-            {
-                con.Close();
-            }
+            return list;
         }
 
         public List<CancellationReport> GetCancellationRefunds(DateTime startDate, DateTime endDate, string trainNo)
         {
             var list = new List<CancellationReport>();
-            var con = DbConnection.GetConnection();
 
-            try
+            using (var con = DbConnection.GetConnection())
+            using (var cmd = new SqlCommand("GetCancellationRefundsReport", con) { CommandType = CommandType.StoredProcedure })
             {
-                var cmd = new SqlCommand("GetCancellationRefundsReport", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
                 cmd.Parameters.AddWithValue("@StartDate", startDate);
                 cmd.Parameters.AddWithValue("@EndDate", endDate);
                 cmd.Parameters.AddWithValue("@TrainNo", trainNo);
 
-                var dr = cmd.ExecuteReader();
-
-                while (dr.Read())
+                using (var dr = cmd.ExecuteReader())
                 {
-                    list.Add(new CancellationReport
+                    while (dr.Read())
                     {
-                        CancellationId = dr.GetInt32(dr.GetOrdinal("Cancellationid")),
-                        BookingId = dr.GetInt32(dr.GetOrdinal("Bookingid")),
-                        TrainNo = dr["Trainno"].ToString(),
-                        PassengerId = dr.IsDBNull(dr.GetOrdinal("Passengerid")) ? 0 : dr.GetInt32(dr.GetOrdinal("Passengerid")),
-                        RefundAmount = dr.GetDecimal(dr.GetOrdinal("Refundamount")),
-                        CancellationDate = dr.GetDateTime(dr.GetOrdinal("Cancellationdate")),
-                        RefundStatus = dr["RefundStatus"].ToString()
-                    });
+                        list.Add(new CancellationReport
+                        {
+                            CancellationId = Convert.ToInt32(dr["Cancellationid"]),
+                            BookingId = Convert.ToInt32(dr["Bookingid"]),
+                            TrainNo = dr["Trainno"].ToString(),
+                            PassengerId = Convert.ToInt32(dr["Passengerid"]),
+                            RefundAmount = Convert.ToDecimal(dr["Refundamount"]),
+                            CancellationDate = Convert.ToDateTime(dr["Cancellationdate"]),
+                            RefundStatus = dr["RefundStatus"].ToString()
+                        });
+                    }
                 }
+            }
 
-                return list;
-            }
-            finally
-            {
-                con.Close();
-            }
+            return list;
         }
     }
 }

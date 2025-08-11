@@ -12,7 +12,6 @@ namespace Railway_Reservation_System_Project.Models
         public string SeatNo { get; set; }        
         public string BerthType { get; set; }      
         public string Status { get; set; }         
-
         public bool Isdeleted { get; set; }
     }
 }

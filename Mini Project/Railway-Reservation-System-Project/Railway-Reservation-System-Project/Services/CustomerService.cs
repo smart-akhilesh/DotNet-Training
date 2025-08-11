@@ -92,10 +92,6 @@ namespace Railway_Reservation_System_Project.Services
 
                 return booking;
             }
-            catch (ServiceException) 
-            {
-                throw;
-            }
             catch (Exception ex)
             {
                 throw new ServiceException($"Failed to retrieve booking details for PNR: {pnr}", ex);

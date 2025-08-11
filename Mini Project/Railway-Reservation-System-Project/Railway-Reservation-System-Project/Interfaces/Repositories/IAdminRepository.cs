@@ -16,6 +16,6 @@ namespace Railway_Reservation_System_Project.Interfaces.Repositories
 
         List<TrainBookingReport> GetBookingsPerTrain(DateTime startDate, DateTime endDate);
 
-        List<CancellationReport> GetCancellationRefunds(DateTime? startDate, DateTime? endDate, string trainNo);
+        List<CancellationReport> GetCancellationRefunds(DateTime startDate, DateTime endDate, string trainNo);
     }
 }

@@ -118,7 +118,7 @@ namespace Railway_Reservation_System_Project.Services
             }
         }
 
-        public List<CancellationReport> GenerateCancellationReport(DateTime? startDate, DateTime? endDate, string trainNo)
+        public List<CancellationReport> GenerateCancellationReport(DateTime startDate, DateTime endDate, string trainNo)
         {
             try
             {

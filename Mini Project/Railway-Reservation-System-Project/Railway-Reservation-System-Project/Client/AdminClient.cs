@@ -13,16 +13,25 @@ namespace Railway_Reservation_System_Project.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("==== Railway Reservation Admin Console ====\n");
+          
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("============================================");
+            Console.WriteLine("   Railway Reservation Admin Console   ");
+            Console.WriteLine("============================================\n");
+            Console.ResetColor();
 
             IAdminRepository adminRepo = new AdminRepository();
             IAdminService adminService = new AdminService(adminRepo);
 
-            // Admin Login
+            
             while (true)
             {
                 try
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("=== Admin Login ===");
+                    Console.ResetColor();
+
                     string username = InputHelper.ReadString("Enter username: ");
                     string password = InputHelper.ReadString("Enter password: ");
 
@@ -30,20 +39,25 @@ namespace Railway_Reservation_System_Project.Client
 
                     if (adminService.Login(admin))
                     {
-                        Console.WriteLine(" Login successful.\n");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\n Login successful.\n");
+                        Console.ResetColor();
                         break;
                     }
                 }
                 catch (LoginException ex)
                 {
-                    Console.WriteLine($" {ex.Message}");
+                    PrintError("Login failed", ex.Message);
+                    Console.ResetColor();
                 }
             }
 
-            // Menu loop
+        
             while (true)
             {
-                Console.WriteLine("\n--- Admin Menu ---");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\n========== Admin Menu ==========");
+                Console.ResetColor();
                 Console.WriteLine("1. Insert New Train");
                 Console.WriteLine("2. Update Train");
                 Console.WriteLine("3. Delete Train");
@@ -51,6 +65,7 @@ namespace Railway_Reservation_System_Project.Client
                 Console.WriteLine("5. Bookings Per Train");
                 Console.WriteLine("6. Cancellation Report");
                 Console.WriteLine("7. Logout");
+                Console.WriteLine("==============================");
 
                 string choice = InputHelper.ReadString("Enter your choice: ");
 
@@ -58,57 +73,59 @@ namespace Railway_Reservation_System_Project.Client
                 {
                     switch (choice)
                     {
-                        case "1":
-                            AddTrainUI(adminService);
-                            break;
-                        case "2":
-                            UpdateTrainUI(adminService);
-                            break;
-                        case "3":
-                            RemoveTrainUI(adminService);
-                            break;
-                        case "4":
-                            BookingRevenueReportUI(adminService);
-                            break;
-                        case "5":
-                            TrainBookingReportUI(adminService);
-                            break;
-                        case "6":
-                            CancellationReportUI(adminService);
-                            break;
+                        case "1": AddTrainUI(adminService); break;
+                        case "2": UpdateTrainUI(adminService); break;
+                        case "3": RemoveTrainUI(adminService); break;
+                        case "4": BookingRevenueReportUI(adminService); break;
+                        case "5": TrainBookingReportUI(adminService); break;
+                        case "6": CancellationReportUI(adminService); break;
                         case "7":
-                            Console.WriteLine(" Exiting Admin Panel.");
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.WriteLine("\n Exiting Admin Panel. Goodbye!");
+                            Console.ResetColor();
                             return;
                         default:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine(" Invalid option. Please try again.");
+                            Console.ResetColor();
                             break;
                     }
                 }
                 catch (TrainOperationException ex)
                 {
-                    Console.WriteLine($"Train operation failed: {ex.Message}");
+                    PrintError("Train operation failed", ex.Message);
                 }
                 catch (ReportGenerationException ex)
                 {
-                    Console.WriteLine($"Report generation failed: {ex.Message}");
+                    PrintError("Report generation failed", ex.Message);
                 }
                 catch (ServiceException ex)
                 {
-                    Console.WriteLine($"Service Error: {ex.Message}");
+                    PrintError("Service Error", ex.Message);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Unexpected error: {ex.Message}");
+                    PrintError("Unexpected error", ex.Message);
                 }
             }
         }
 
-    
+        private static void PrintError(string title, string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($" {title}: {message}");
+            Console.ResetColor();
+        }
+
         private static void AddTrainUI(IAdminService adminService)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n=== Add New Train ===");
+            Console.ResetColor();
+
             var train = new Train
             {
-                TrainNo = InputHelper.ReadString("Train No: "),
+                TrainNo = InputHelper.ReadInt("Train No: "),
                 TrainName = InputHelper.ReadString("Train Name: "),
                 Source = InputHelper.ReadString("Source: "),
                 Destination = InputHelper.ReadString("Destination: "),
@@ -121,14 +138,20 @@ namespace Railway_Reservation_System_Project.Client
             };
 
             adminService.AddTrain(train);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Train added successfully.");
+            Console.ResetColor();
         }
 
         private static void UpdateTrainUI(IAdminService adminService)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n=== Update Train ===");
+            Console.ResetColor();
+
             var train = new Train
             {
-                TrainNo = InputHelper.ReadString("Enter Train No to Update: "),
+                TrainNo = InputHelper.ReadInt("Enter Train No to Update: "),
                 TrainName = InputHelper.ReadString("New Train Name: "),
                 Source = InputHelper.ReadString("New Source: "),
                 Destination = InputHelper.ReadString("New Destination: "),
@@ -141,49 +164,76 @@ namespace Railway_Reservation_System_Project.Client
             };
 
             adminService.EditTrain(train);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Train updated successfully.");
+            Console.ResetColor();
         }
 
         private static void RemoveTrainUI(IAdminService adminService)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n=== Remove Train ===");
+            Console.ResetColor();
+
             string trainNo = InputHelper.ReadString("Enter Train No to Delete: ");
             adminService.RemoveTrain(trainNo);
-            Console.WriteLine("Train deleted successfully.");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(" Train deleted successfully.");
+            Console.ResetColor();
         }
 
         private static void BookingRevenueReportUI(IAdminService adminService)
         {
-            DateTime startDate = InputHelper.ReadDate("Start Date (yyyy-MM-dd): ");
-            DateTime endDate = InputHelper.ReadDate("End Date (yyyy-MM-dd): ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n=== Booking & Revenue Report ===");
+            Console.ResetColor();
+
+            DateTime startDate = InputHelper.ReadDate("Start Date (YYYY-MM-DD): ");
+            DateTime endDate = InputHelper.ReadDate("End Date (YYYY-MM-DD): ");
 
             var report = adminService.GenerateBookingRevenueReport(startDate, endDate);
-            Console.WriteLine($"\n Total Bookings: {report.TotalBookings}");
-            Console.WriteLine($" Total Revenue: {report.TotalRevenue:C}");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Total Bookings: {report.TotalBookings}");
+            Console.WriteLine($" Total Revenue: {report.TotalRevenue}");
+            Console.ResetColor();
         }
 
         private static void TrainBookingReportUI(IAdminService adminService)
         {
-            DateTime startDate = InputHelper.ReadDate("Start Date (yyyy-MM-dd): ");
-            DateTime endDate = InputHelper.ReadDate("End Date (yyyy-MM-dd): ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n=== Bookings Per Train ===");
+            Console.ResetColor();
+
+            DateTime startDate = InputHelper.ReadDate("Start Date (YYYY-MM-DD): ");
+            DateTime endDate = InputHelper.ReadDate("End Date (YYYY-MM-DD): ");
 
             var reports = adminService.GenerateTrainBookingReport(startDate, endDate);
+            Console.ForegroundColor = ConsoleColor.Magenta;
             foreach (var r in reports)
             {
-                Console.WriteLine($"{r.TrainNo} - {r.TrainName} | Bookings: {r.TotalBookings}");
+                Console.WriteLine($" Train Number: {r.TrainNo} | Train Name:  {r.TrainName} | Total Bookings: {r.TotalBookings}");
             }
+            Console.ResetColor();
         }
 
         private static void CancellationReportUI(IAdminService adminService)
         {
-            DateTime startDate = InputHelper.ReadDate("Start Date (yyyy-MM-dd): ");
-            DateTime endDate = InputHelper.ReadDate("End Date (yyyy-MM-dd): ");
-            string trainNo = InputHelper.ReadString("Train No : ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n=== Cancellation Report ===");
+            Console.ResetColor();
+
+            DateTime startDate = InputHelper.ReadDate("Start Date (YYYY-MM-DD): ");
+            DateTime endDate = InputHelper.ReadDate("End Date (YYYY-MM-DD): ");
+            string trainNo = InputHelper.ReadString("Train No: ");
 
             var reports = adminService.GenerateCancellationReport(startDate, endDate, trainNo);
+            Console.ForegroundColor = ConsoleColor.Magenta;
             foreach (var r in reports)
             {
-                Console.WriteLine($"CancellationID: {r.CancellationId} | Refund: {r.RefundAmount:C} | Date: {r.CancellationDate}");
+                Console.WriteLine($" CancellationID: {r.CancellationId} | Refund: {r.RefundAmount} |  Date: {r.CancellationDate}");
             }
+            Console.ResetColor();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Railway_Reservation_System_Project.Models
 {
     public class Train
     {
-        public string TrainNo { get; set; }
+        public int TrainNo { get; set; }
         public string TrainName { get; set; }
         public string Source { get; set; }
         public string Destination { get; set; }
