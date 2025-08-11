@@ -12,7 +12,7 @@ namespace Railway_Reservation_System_Project.Client
     {
         public static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+           
             Console.WriteLine("==== Railway Reservation Customer Console ====\n");
 
             ICustomerRepository customerRepo = new CustomerRepository();
