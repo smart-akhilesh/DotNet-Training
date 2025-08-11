@@ -179,7 +179,7 @@ namespace Railway_Reservation_System_Project.Repositories
             }
         }
 
-        public List<CancellationReport> GetCancellationRefunds(DateTime? startDate, DateTime? endDate, string trainNo)
+        public List<CancellationReport> GetCancellationRefunds(DateTime startDate, DateTime endDate, string trainNo)
         {
             var list = new List<CancellationReport>();
             var con = DbConnection.GetConnection();
@@ -190,9 +190,9 @@ namespace Railway_Reservation_System_Project.Repositories
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@StartDate", startDate.HasValue ? (object)startDate.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("@EndDate", endDate.HasValue ? (object)endDate.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("@TrainNo", string.IsNullOrWhiteSpace(trainNo) ? DBNull.Value : (object)trainNo);
+                cmd.Parameters.AddWithValue("@StartDate", startDate);
+                cmd.Parameters.AddWithValue("@EndDate", endDate);
+                cmd.Parameters.AddWithValue("@TrainNo", trainNo);
 
                 var dr = cmd.ExecuteReader();
 

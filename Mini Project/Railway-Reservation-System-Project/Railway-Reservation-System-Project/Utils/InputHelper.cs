@@ -44,25 +44,5 @@ namespace Railway_Reservation_System_Project.Utils
             }
         }
 
-        public static DateTime? ReadOptionalDate(string prompt)
-        {
-            Console.Write(prompt);
-            string input = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(input))
-                return null;
-
-            if (DateTime.TryParse(input, out DateTime date))
-                return date;
-
-            Console.WriteLine("Invalid date format. Please enter in yyyy-MM-dd format.");
-            return ReadOptionalDate(prompt);
-        }
-
-        public static string ReadOptionalString(string prompt)
-        {
-            Console.Write(prompt);
-            string input = Console.ReadLine();
-            return string.IsNullOrWhiteSpace(input) ? null : input;
-        }
     }
 }

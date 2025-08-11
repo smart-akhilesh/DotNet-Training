@@ -18,6 +18,6 @@ namespace Railway_Reservation_System_Project.Interfaces.Services
 
         List<TrainBookingReport> GenerateTrainBookingReport(DateTime startDate, DateTime endDate);
 
-        List<CancellationReport> GenerateCancellationReport(DateTime? startDate, DateTime? endDate, string trainNo);
+        List<CancellationReport> GenerateCancellationReport(DateTime startDate, DateTime endDate, string trainNo);
     }
 }

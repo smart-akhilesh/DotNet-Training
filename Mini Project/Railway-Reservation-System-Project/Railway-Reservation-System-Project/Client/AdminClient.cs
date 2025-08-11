@@ -50,7 +50,7 @@ namespace Railway_Reservation_System_Project.Client
                 Console.WriteLine("4. Total Booking and Revenue");
                 Console.WriteLine("5. Bookings Per Train");
                 Console.WriteLine("6. Cancellation Report");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("7. Logout");
 
                 string choice = InputHelper.ReadString("Enter your choice: ");
 
@@ -175,9 +175,9 @@ namespace Railway_Reservation_System_Project.Client
 
         private static void CancellationReportUI(IAdminService adminService)
         {
-            DateTime? startDate = InputHelper.ReadOptionalDate("Start Date (yyyy-MM-dd) or leave blank: ");
-            DateTime? endDate = InputHelper.ReadOptionalDate("End Date (yyyy-MM-dd) or leave blank: ");
-            string trainNo = InputHelper.ReadOptionalString("Train No or leave blank: ");
+            DateTime startDate = InputHelper.ReadDate("Start Date (yyyy-MM-dd): ");
+            DateTime endDate = InputHelper.ReadDate("End Date (yyyy-MM-dd): ");
+            string trainNo = InputHelper.ReadString("Train No : ");
 
             var reports = adminService.GenerateCancellationReport(startDate, endDate, trainNo);
             foreach (var r in reports)

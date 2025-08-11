@@ -13,7 +13,7 @@ namespace Railway_Reservation_System_Project.Client
     {
         public static void Main(string[] args)
         {
-
+          
             Console.WriteLine("==== Railway Reservation Customer Console ====\n");
 
             ICustomerRepository customerRepo = new CustomerRepository();
@@ -31,7 +31,7 @@ namespace Railway_Reservation_System_Project.Client
                 int firstChoice = InputHelper.ReadInt("Enter your choice: ");
                 if (firstChoice == 1)
                 {
-
+                   
                     while (true)
                     {
                         try
@@ -62,7 +62,7 @@ namespace Railway_Reservation_System_Project.Client
                             Console.WriteLine($"Unexpected error: {ex.Message}");
                         }
                     }
-                    break;
+                    break; 
                 }
                 else if (firstChoice == 2)
                 {
@@ -278,16 +278,16 @@ namespace Railway_Reservation_System_Project.Client
                         + p.PassengerName + "  "
                         + p.Age + "  "
                         + p.Gender + "  "
-                        + (p.SeatNo ?? "-") + "  "
-                        + (p.BerthType ?? "-") + "  "
-                        + (p.Status ?? "-"));
+                        + p.SeatNo + "  "
+                        + p.BerthType + "  "
+                        + p.Status + " ");
                 }
-
+            
 
             }
-        }
+       }
 
-
+  
         private static void CancelPassengerTicket(ICustomerService service)
         {
             string pnr = InputHelper.ReadString("Enter PNR: ");
