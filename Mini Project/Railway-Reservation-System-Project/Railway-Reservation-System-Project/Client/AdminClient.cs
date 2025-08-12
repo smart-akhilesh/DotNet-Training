@@ -11,7 +11,7 @@ namespace Railway_Reservation_System_Project.Client
 {
     class AdminClient
     {
-        static void Main(string[] args)
+        public static void Run()
         {
           
             Console.ForegroundColor = ConsoleColor.Cyan;

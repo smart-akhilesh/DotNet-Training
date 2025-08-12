@@ -11,7 +11,7 @@ namespace Railway_Reservation_System_Project.Client
 {
     public class CustomerClient
     {
-        public static void Main(string[] args)
+        public static void Run()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("==== Railway Reservation Customer Console ====\n");
@@ -146,7 +146,7 @@ namespace Railway_Reservation_System_Project.Client
             string name = InputHelper.ReadString("Name: ");
             int age = InputHelper.ReadInt("Age: ");
             string phone = InputHelper.ReadString("Phone: ");
-            string emailId = InputHelper.ReadString("Email: ");
+            string emailId = InputHelper.ReadValidEmail("Email: ");
             string password = InputHelper.ReadString("Password: ");
 
             Customer newCustomer = new Customer
@@ -179,7 +179,7 @@ namespace Railway_Reservation_System_Project.Client
         {
             string source = InputHelper.ReadString("Source: ");
             string destination = InputHelper.ReadString("Destination: ");
-            DateTime travelDate = InputHelper.ReadDate("Travel Date (yyyy-MM-dd): ");
+            DateTime travelDate = InputHelper.ReadDate("Travel Date (YYYY-MM-DD): ");
 
             var trains = service.ViewTrainsByRoute(source, destination, travelDate);
             if (trains == null || trains.Count == 0)
@@ -208,7 +208,7 @@ namespace Railway_Reservation_System_Project.Client
         {
             string trainNo = InputHelper.ReadString("Train No: ");
             string classType = InputHelper.ReadClassType("Class Type (Sleeper/AC3/AC2): ");
-            DateTime travelDate = InputHelper.ReadDate("Travel Date (yyyy-MM-dd): ");
+            DateTime travelDate = InputHelper.GetValidTravelDate("Travel Date (YYYY-MM-DD): ");
 
             var seatInfo = service.GetAvailableSeatsAndPrice(trainNo, travelDate, classType);
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -285,7 +285,7 @@ namespace Railway_Reservation_System_Project.Client
             Console.WriteLine($"Class Type: {b.ClassType}");
             Console.WriteLine($"Travel Date: {b.TravelDate:yyyy-MM-dd}");
             Console.WriteLine($"Total Passengers: {b.TotalPassengers}");
-            Console.WriteLine($"Total Amount: {b.TotalAmount:C}");
+            Console.WriteLine($"Total Amount: {b.TotalAmount}");
             Console.WriteLine($"Booking Date: {b.BookingDate:yyyy-MM-dd HH:mm}");
             Console.WriteLine($"Payment Method: {b.PaymentMethod}");
             Console.WriteLine($"Status: {b.Status}");

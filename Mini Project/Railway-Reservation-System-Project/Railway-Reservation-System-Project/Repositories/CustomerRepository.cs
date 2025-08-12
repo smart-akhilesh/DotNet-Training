@@ -139,7 +139,7 @@ namespace Railway_Reservation_System_Project.Repositories
                 cmd.Parameters.AddWithValue("@ClassType", classType);
                 cmd.Parameters.AddWithValue("@TravelDate", travelDate);
                 cmd.Parameters.AddWithValue("@TotalPassengers", totalPassengers);
-                cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
 
                 var passengerTable = new DataTable();
                 passengerTable.Columns.Add("Passengername", typeof(string));
