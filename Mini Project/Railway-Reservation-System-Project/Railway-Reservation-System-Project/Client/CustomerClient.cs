@@ -207,7 +207,7 @@ namespace Railway_Reservation_System_Project.Client
         private static void BookTicket(ICustomerService service, int customerId)
         {
             string trainNo = InputHelper.ReadString("Train No: ");
-            string classType = InputHelper.ReadString("Class Type (Sleeper/AC3/AC2): ");
+            string classType = InputHelper.ReadClassType("Class Type (Sleeper/AC3/AC2): ");
             DateTime travelDate = InputHelper.ReadDate("Travel Date (yyyy-MM-dd): ");
 
             var seatInfo = service.GetAvailableSeatsAndPrice(trainNo, travelDate, classType);
