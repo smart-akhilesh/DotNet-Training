@@ -1,0 +1,130 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: purple;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+nav {
+    background: darkblue;
+    padding: 12px;
+    text-align: center;
+}
+
+    nav a, nav .logout-btn {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        nav a:hover, nav .logout-btn:hover {
+            color: #ffdd59;
+            text-decoration: underline;
+        }
+
+.container {
+    width: 80%;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+h2, h3 {
+    color: #2f3640;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-card {
+    background: #f5f6fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+label {
+    flex: 1;
+    font-weight: bold;
+    color: #2f3640;
+}
+
+input[type=text], input[type=password], textarea, select {
+    flex: 2;
+    padding: 8px 12px;
+    border: 2px solid #dcdde1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.btn {
+    background: #40739e;
+    border: none;
+    padding: 10px 25px;
+    margin: 5px;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+    .btn:hover {
+        background: #4876bd;
+    }
+
+.btn-danger {
+    background: #e84118;
+}
+
+    .btn-danger:hover {
+        background: #c23616;
+    }
+
+.error-message {
+    color: #e84118;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.success-message {
+    color: #44bd32;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+footer {
+    background: #1e272e;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    font-size: 14px;
+}

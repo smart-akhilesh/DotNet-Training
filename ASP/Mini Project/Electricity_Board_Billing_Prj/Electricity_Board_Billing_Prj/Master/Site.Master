@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="Electricity_Board_Billing_Prj.SiteMaster" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Electricity Board Billing</title>
+     <link rel="stylesheet" type="text/css" href="~/Themes/SiteStyles.css" />
+</head>
+<body>
+    <form runat="server">
+        <header>
+            <h1> Electricity Board Billing System</h1>
+        </header>
+     <nav>
+      <asp:HyperLink runat="server" NavigateUrl="~/Pages/BillEntry.aspx" Text="Bill Entry" />
+      <asp:HyperLink runat="server" NavigateUrl="~/Pages/ViewLastBills.aspx" Text="View Last Bills" />
+      <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-danger" Text="Logout" OnClick="btnLogout_Click" />
+     </nav>
+
+        <div class="container">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+    </form>
+</body>
+</html>

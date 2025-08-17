@@ -1,0 +1,6 @@
+C:\Users\akhileshsing\source\repos\Electricity_Board_Billing_Prj\EBDataAccessLayer\obj\Debug\EBDataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\akhileshsing\source\repos\Electricity_Board_Billing_Prj\EBDataAccessLayer\obj\Debug\EBDataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\akhileshsing\source\repos\Electricity_Board_Billing_Prj\EBDataAccessLayer\bin\Debug\EBDataAccessLayer.dll
+C:\Users\akhileshsing\source\repos\Electricity_Board_Billing_Prj\EBDataAccessLayer\bin\Debug\EBDataAccessLayer.pdb
+C:\Users\akhileshsing\source\repos\Electricity_Board_Billing_Prj\EBDataAccessLayer\obj\Debug\EBDataAccessLayer.dll
+C:\Users\akhileshsing\source\repos\Electricity_Board_Billing_Prj\EBDataAccessLayer\obj\Debug\EBDataAccessLayer.pdb
