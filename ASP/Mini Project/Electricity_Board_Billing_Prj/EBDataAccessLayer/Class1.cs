@@ -7,7 +7,7 @@ namespace EBDataAccessLayer
     {
         public static SqlConnection GetConnection()
         {
-            // Reads connection string from App.config (or Web.config in calling app)
+           
             string cs = ConfigurationManager.ConnectionStrings["EBDB"].ConnectionString;
             return new SqlConnection(cs);
         }
