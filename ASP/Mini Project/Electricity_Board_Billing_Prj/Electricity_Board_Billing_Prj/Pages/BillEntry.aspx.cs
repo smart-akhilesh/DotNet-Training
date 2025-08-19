@@ -76,8 +76,8 @@ namespace Electricity_Board_Billing_Prj
      
                 ElectricityBill bill = new ElectricityBill
                 {
-                    ConsumerNumber = txtConsumerNumber.Text.Trim(),
-                    ConsumerName = txtConsumerName.Text.Trim(),
+                    ConsumerNumber = txtConsumerNumber.Text,
+                    ConsumerName = txtConsumerName.Text,
                     UnitsConsumed = units
                 };
 
