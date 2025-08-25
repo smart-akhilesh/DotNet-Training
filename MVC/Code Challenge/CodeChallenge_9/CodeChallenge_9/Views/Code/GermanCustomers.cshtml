@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CodeChallenge_9.Customer>
+
+@{
+    ViewBag.Title = "German Customers";
+}
+
+<h2>German Customers</h2>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Customer ID</th>
+        <th>Company Name</th>
+        <th>Contact Name</th>
+        <th>Contact Title</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Region</th>
+        <th>Postal Code</th>
+        <th>Country</th>
+        <th>Phone</th>
+        <th>Fax</th>
+    </tr>
+
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.CustomerID</td>
+            <td>@c.CompanyName</td>
+            <td>@c.ContactName</td>
+            <td>@c.ContactTitle</td>
+            <td>@c.Address</td>
+            <td>@c.City</td>
+            <td>@c.Region</td>
+            <td>@c.PostalCode</td>
+            <td>@c.Country</td>
+            <td>@c.Phone</td>
+            <td>@c.Fax</td>
+        </tr>
+    }
+</table>

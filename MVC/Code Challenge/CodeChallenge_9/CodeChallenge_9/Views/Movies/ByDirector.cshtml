@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CodeChallenge_9.Models.Movie>
+
+<h2>Movies by Director: @ViewBag.DirectorName</h2>
+
+<p>
+    @Html.ActionLink("Back to Movies List", "Index")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.MovieName)</th>
+            <th>@Html.DisplayNameFor(m => m.DateOfRelease)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.MovieName</td>
+                <td>@movie.DateOfRelease.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model CodeChallenge_9.Models.Movie
+
+@{
+    ViewBag.Title = "Create Movie";
+}
+
+<h2>Create Movie</h2>
+
+@using (Html.BeginForm("Create", "Movies", FormMethod.Post))
+{
+    <div>
+        <label>Movie Name</label><br />
+        @Html.TextBoxFor(m => m.MovieName)
+    </div>
+
+    <div>
+        <label>Director Name</label><br />
+        @Html.TextBoxFor(m => m.DirectorName)
+    </div>
+
+    <div>
+        <label>Date of Release</label><br />
+        @Html.TextBoxFor(m => m.DateOfRelease, "{0:yyyy-MM-dd}", new { type = "date" })
+    </div>
+
+    <button type="submit">Save</button>
+}
