@@ -1,0 +1,54 @@
+﻿@model List<ECommerce.DTO.CartDTO>
+
+@{
+    ViewBag.Title = "Your Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Cart</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td><img src="@item.ImageURL" width="80" /></td>
+
+                <td>@item.ProductName</td>
+                <td>₹@item.Price</td>
+                <td>
+                    @Html.ActionLink("-", "UpdateQuantity", new { cartId = item.CartID, quantity = item.Quantity - 1 }, new { @class = "btn btn-warning btn-sm" })
+                    <span style="margin:0 10px;">@item.Quantity</span>
+                    @Html.ActionLink("+", "UpdateQuantity", new { cartId = item.CartID, quantity = item.Quantity + 1 }, new { @class = "btn btn-success btn-sm" })
+                </td>
+                <td>₹@(item.Price * item.Quantity)</td>
+                <td>
+                    @Html.ActionLink("Remove", "Remove", new { cartId = item.CartID }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Total: ₹@Model.Sum(i => i.Price * i.Quantity)</h3>
+
+  
+    <a href="@Url.Action("Checkout", "Order")" class="btn btn-success">Proceed to Checkout</a>
+
+}
+else
+{
+    <p>Your cart is empty.</p>
+}

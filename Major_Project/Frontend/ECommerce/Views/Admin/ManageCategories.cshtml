@@ -1,0 +1,209 @@
+﻿
+@model IEnumerable<ECommerce.Models.Category>
+
+@if (TempData["Message"] != null)
+
+{
+<script>alert('@TempData["Message"]');</script>
+}
+
+@if (TempData["Error"] != null)
+
+{
+<script>alert('@TempData["Error"]');</script>
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        body {
+            margin: 0;
+            background-color: #1A1A1A;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #D4AF37;
+            padding: 15px 30px;
+        }
+
+            .navbar .logo {
+                display: flex;
+                align-items: center;
+            }
+
+                .navbar .logo img {
+                    height: 40px;
+                    margin-right: 15px;
+                }
+
+            .navbar .greeting {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .navbar .logout a {
+                color: #E0E0E0;
+                text-decoration: none;
+                background-color: #e74c3c;
+                padding: 8px 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .navbar .logout a:hover {
+                    background-color: #c0392b;
+                }
+
+        h2 {
+            text-align: center;
+            color: #D4AF37;
+            margin-top: 30px;
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 20px auto;
+            background-color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #D4AF37;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #1A1A1A;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #D4AF37;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn-primary:hover {
+                background-color: #bfa133;
+            }
+
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #000;
+            color: #D4AF37;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #D4AF37;
+            text-align: center;
+        }
+
+        th {
+            background-color: #222;
+        }
+
+        .action-links a {
+            margin-right: 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .delete-btn:hover {
+                background-color: #c0392b;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="~/Content/logo1..jpg" alt="Logo" />
+            <div class="greeting">FlipNShop </div>
+        </div>
+        <div class="logout" style="display: flex; align-items: center; gap: 15px;">
+            <div class="greeting">Hello @Session["Username"]</div>
+            <a href="@Url.Action("Logout", "Account")">Logout</a>
+        </div>
+    </div>
+
+    <h2>Manage Categories</h2>
+
+    <div class="form-container">
+
+        @using (Html.BeginForm("AddCategory", "Admin", FormMethod.Post))
+
+        {
+<div class="form-group">
+    <label>New Category</label>
+    <input type="text" name="categoryName" placeholder="Enter category name" />
+</div>
+                <button type="submit" class="btn-primary">Add Category</button>}
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var category in Model)
+
+            {
+<tr>
+    <td>@category.CategoryName</td>
+    <td class="action-links">
+
+        @Html.ActionLink("Edit", "EditCategory", "Admin", new { id = category.CategoryID }, new { @class = "btn btn-warning btn-sm" })
+
+        @using (Html.BeginForm("DeleteCategory", "Admin", FormMethod.Post, new { @style = "display:inline;" }))
+
+        {
+
+            @Html.Hidden("id", category.CategoryID)
+                                <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this category?');">Delete</button>}
+    </td>
+</tr>
+       }
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+

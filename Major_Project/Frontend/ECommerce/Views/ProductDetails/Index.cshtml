@@ -1,0 +1,170 @@
+﻿@model ECommerce.DTO.ProductDTO
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #121212; /* Dark theme */
+        color: #f1f1f1;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2, h4 {
+        color: #FFD700; /* Gold headings */
+    }
+
+    .product-container {
+        margin-top: 40px;
+    }
+
+    /* Image Box */
+    .product-image-box {
+        background: #1c1c1c;
+        border: 2px solid #FFD700;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.6);
+        text-align: center;
+    }
+
+        .product-image-box img {
+            max-height: 400px;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #fff;
+            padding: 10px;
+        }
+
+    /* Info Card */
+    .product-info-card {
+        background: #1c1c1c;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.6);
+        border: 2px solid #FFD700;
+    }
+
+        .product-info-card h2 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .product-info-card .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #32CD32; /* Lime green for price */
+        }
+
+        .product-info-card p {
+            color: #ddd;
+            font-size: 15px;
+        }
+
+    /* Stock Badge */
+    .badge-custom {
+        font-size: 16px;
+        padding: 10px 18px;
+        border-radius: 20px;
+    }
+
+    .btn {
+        border-radius: 30px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background: #FFD700;
+        border: none;
+        color: #000;
+    }
+
+        .btn-primary:hover {
+            background: #e6c200;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+    .btn-outline-secondary {
+        border: 2px solid #FFD700;
+        color: #FFD700;
+        background: transparent;
+    }
+
+        .btn-outline-secondary:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+    .btn-secondary {
+        background: #555;
+        border: none;
+    }
+</style>
+
+<div class="container product-container">
+    <div class="row g-5">
+        <!-- Product Image -->
+        <div class="col-md-5 d-flex align-items-center">
+            <div class="product-image-box w-100">
+                @if (!string.IsNullOrEmpty(Model.ImageURL))
+                {
+                    <img src="@Model.ImageURL" alt="@Model.Name" />
+                }
+                else
+                {
+                    <img src="~/Images/no-image.png" alt="No Image" />
+                }
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-7">
+            <div class="product-info-card">
+                <h2>@Model.Name</h2>
+                <h4 class="price">₹@Model.Price</h4>
+
+                <p>@Model.Description</p>
+
+                <p>
+                    <b>Stock:</b>
+                    @if (Model.RemainingQuantity > 0)
+                    {
+                        <span class="badge bg-success badge-custom">
+                            @Model.RemainingQuantity Available
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger badge-custom">Out of Stock</span>
+                    }
+                </p>
+
+                <div class="d-flex gap-3 mt-4">
+                    @if (Model.RemainingQuantity > 0)
+                    {
+                        <a href="@Url.Action("Add", "AddtoCart", new { id = Model.ProductID })"
+                           class="btn btn-primary shadow-sm">
+                            🛒 Add to Cart
+                        </a>
+                        <a href="@Url.Action("Add", "Wishlist", new { id = Model.ProductID })" 
+                           class="btn btn-outline-secondary shadow-sm">
+                            ❤️ Add to Wishlist
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary" disabled>
+                            ❌ Not Available
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

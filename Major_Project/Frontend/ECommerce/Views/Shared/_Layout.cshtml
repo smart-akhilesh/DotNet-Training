@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Online Shopping</title>
+    @Styles.Render("~/Content/css") <!-- Includes bootstrap.min.css -->
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*@Html.ActionLink("🛒 FlipNShop", "Index", "Home", null, new { @class = "navbar-brand" })*@
+
+                    <a href="@Url.Action("Index", "Home")" class="navbar-brand" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="~/Content/logo1..jpg" alt="FlipNShop Logo" style="height: 30px;" />
+                        <span>FlipNShop</span>
+                    </a>
+
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "User")</li>
+                        <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                        <li>@Html.ActionLink("Orders", "MyOrders", "UserOrders")</li>
+
+                        <!-- Categories Dropdown -->
+                        @Html.Action("CategoryDropdown", "Shared")
+                        @*<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Electronics", "Category", "Products", new { category = "Electronics" }, null)</li>
+                <li>@Html.ActionLink("Fashion", "Category", "Products", new { category = "Fashion" }, null)</li>
+                <li>@Html.ActionLink("Books", "Category", "Products", new { category = "Books" }, null)</li>
+                <li>@Html.ActionLink("Home & Kitchen", "Category", "Products", new { category = "HomeKitchen" }, null)</li>
+            </ul>
+        </li>*@
+
+                        @if (Session["Username"] != null)
+                        {
+                            <!-- Account Dropdown -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Edit Profile", "EditProfile", "Account")</li>
+                                    <li>@Html.ActionLink("Mail Box", "MailBox", "Account")</li>
+                                </ul>
+                            </li>
+                        }
+
+                        <!-- Search Bar -->
+                        <li>
+                            <form class="navbar-form" action="@Url.Action("Search", "Products")" method="get" role="search">
+                                <div class="input-group">
+                                    <input type="text" name="query" class="form-control" placeholder="Search products..." />
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+
+                    <!-- Right Side: Auth + Cart -->
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Session["Username"] == null)
+                        {
+                            <!-- Login Dropdown -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown">Login <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("User Login", "Signin", "Account", new { role = "User" }, null)</li>
+                                    <li>@Html.ActionLink("Retailer Login", "Signin", "Account", new { role = "Retailer" }, null)</li>
+                                    <li>@Html.ActionLink("Admin Login", "Signin", "Account", new { role = "Admin" }, null)</li>
+                                </ul>
+                            </li>
+
+                            <!-- Register Dropdown -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Register User", "Signup", "Account", new { role = "User" }, null)</li>
+                                    <li>@Html.ActionLink("Register Retailer", "Signup", "Account", new { role = "Retailer" }, null)</li>
+                                </ul>
+                            </li>
+
+
+                        }
+                        else
+                        {
+                            <!-- Welcome Message -->
+                            <li><p class="navbar-text">Welcome, @Session["Username"]</p></li>
+
+                            <!-- Logout -->
+
+                            <li>@Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "text-danger" })</li>
+
+                        }
+                        <li>
+                            <a href="@Url.Action("Index", "Wishlist")" title="Wishlist">
+                                <span class="glyphicon glyphicon-heart"></span>
+                            </a>
+                        </li>
+
+                        <!-- Cart Icon -->
+                        <li>
+                            <a href="@Url.Action("Index", "AddtoCart")" title="View Cart">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+
+        </div>
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿@model List<ECommerce.Models.Product>
+
+@{
+    ViewBag.Title = "Search Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #121212;
+        color: #f1f1f1;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        font-weight: 700;
+        margin: 20px 0;
+        color: #FFD700; /* gold heading */
+    }
+
+    .card {
+        margin-top: 15px;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: #FFD700;
+        color: #000;
+        text-align: center;
+    }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background: #fff;
+            padding: 10px;
+        }
+
+    .card-body {
+        padding: 15px;
+    }
+
+        .card-body h4 {
+            font-weight: bold;
+            font-size: 20px;
+            color: #000;
+        }
+
+    .price-tag {
+        font-size: 18px;
+        font-weight: bold;
+        color: #8B0000;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .btn {
+        border-radius: 25px;
+        padding: 8px 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin: 5px;
+    }
+
+    .btn-primary {
+        background: #000;
+        border: none;
+        color: #FFD700;
+    }
+
+        .btn-primary:hover {
+            background: #333;
+            color: #fff;
+        }
+
+    .btn-outline-dark {
+        border: 2px solid #000;
+        color: #000;
+    }
+
+        .btn-outline-dark:hover {
+            background: #000;
+            color: #FFD700;
+        }
+
+    .wishlist-btn {
+        background: #b8860b;
+        border: none;
+        color: white;
+    }
+
+        .wishlist-btn:hover {
+            background: #996515;
+        }
+
+    .out-of-stock {
+        font-size: 16px;
+        font-weight: bold;
+        color: red;
+        margin-top: 10px;
+        display: block;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-center">🔍 Search Results for "@ViewBag.SearchQuery"</h2>
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var product in Model)
+            {
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="@(string.IsNullOrEmpty(product.ImageURL) ? Url.Content("~/Images/no-image.png") : "https://localhost:44353" + product.ImageURL)"
+                             alt="@product.Name"
+                             class="img-fluid" />
+
+                        <div class="card-body">
+                            <h4>@product.Name</h4>
+                            <span class="price-tag">₹@product.Price</span>
+
+                            @if (product.RemainingQuantity > 0)
+                            {
+                                <a href="@Url.Action("Add", "AddtoCart", new { id = product.ProductID })" class="btn btn-primary">
+                                     Add to Cart
+                                </a>
+                                <a href="@Url.Action("Index", "ProductDetails", new { id = product.ProductID })"
+                                   class="btn btn-outline-dark">
+                                     View Details
+                                </a>
+                                <a href="@Url.Action("Addtocart", "Products", new { id = product.ProductID })" class="btn wishlist-btn">
+                                    Add to Wishlist
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="out-of-stock"> Out of Stock</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-md-12 text-center">
+                <div class="alert alert-dark shadow-sm rounded">
+                    🚀 No products matched your search.
+                </div>
+            </div>
+        }
+    </div>
+</div>

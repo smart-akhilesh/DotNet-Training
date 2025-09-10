@@ -1,0 +1,69 @@
+﻿@{ ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
+
+
+<div class="welcome">
+    <div class="welcome-text"> Welcome to Online Shopping </div>
+</div>
+
+<!-- Carousel Section -->
+<div id="homeCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#homeCarousel" data-slide-to="1"></li>
+        <li data-target="#homeCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        <!-- Slide 1: Sale -->
+        <div class="item active">
+            <a href="@Url.Action("Sale", "Products")">
+                <img src="~/Content/Images/saleimg.jpg" alt="60% Off Sale" class="img-responsive center-block" width="400" />
+            </a>
+            @*<div class="carousel-caption">
+                    <h3>Up to 60% Off!</h3>
+                    <p>Grab the hottest deals now</p>
+                </div>*@
+        </div>
+
+        <!-- Slide 2: Trending Electronics -->
+        <div class="item">
+            <a href="@Url.Action("Category", "Products", new { category = "Electronics" })">
+                <img src="~/Content/Images/s25.jpg" alt="Trending Electronics" class="img-responsive center-block" width="400" />
+            </a>
+            @*<div class="carousel-caption">
+                    <h3>Trending Electronics</h3>
+                    <p>Latest gadgets and tech</p>
+                </div>*@
+        </div>
+
+        <!-- Slide 3: Trending Fashion -->
+        <div class="item">
+            <a href="@Url.Action("Category", "Products", new { category = "Fashion" })">
+                <img src="~/Content/Images/ax.jpg" alt="Trending Fashion" class="img-responsive center-block" width="400" />
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#homeCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#homeCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+    <footer class="footer" style="margin-top: 200px">
+        <p style="margin-top:50px">&copy; @DateTime.Now.Year - FlipNShop</p>
+        <div class="scroll">
+            <p> Project Done By: Sai Satya Manohar, Dinesh, Shami Gaffar, Rahul Kumar, Akhilesh Singh</p>
+        </div>
+    </footer>
+
+</div>
+

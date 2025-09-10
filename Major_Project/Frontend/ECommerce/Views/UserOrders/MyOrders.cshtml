@@ -1,0 +1,218 @@
+﻿@model List<ECommerce.DTO.OrderDTO>
+
+@{
+    ViewBag.Title = "My Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background-color: #121212; /* dark theme */
+        color: #fff; /* white text */
+        font-family: 'Segoe UI', sans-serif;
+        line-height: 1.6;
+    }
+
+    h2 {
+        font-weight: 700;
+        margin: 25px 0;
+        color: #FFD700; /* gold heading */
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    .order-card {
+        border-radius: 12px;
+        margin-bottom: 30px;
+        background: #1e1e1e;
+        color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        border: 1.5px solid #FFD700;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+        }
+
+    .order-header {
+        background: #2c2c2c;
+        padding: 14px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #444;
+    }
+
+        .order-header b {
+            color: #FFD700;
+        }
+
+    .badge {
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .bg-success {
+        background: #28a745 !important;
+        color: #fff;
+    }
+
+    .bg-info {
+        background: #17a2b8 !important;
+        color: #fff;
+    }
+
+    .bg-warning {
+        background: #ffc107 !important;
+        color: #000;
+    }
+
+    .shipping-box {
+        background: #2c2c2c;
+        border-radius: 10px;
+        padding: 18px;
+        margin: 18px 0;
+        border-left: 4px solid #FFD700;
+    }
+
+        .shipping-box h6 {
+            color: #FFD700;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .shipping-box p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+
+    .table {
+        margin-top: 15px;
+        background: #1c1c1c;
+        color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+        .table thead {
+            background: #FFD700;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid #333;
+            transition: background 0.3s ease;
+        }
+
+            .table tbody tr:hover {
+                background: #292929;
+            }
+
+        .table td,
+        .table th {
+            vertical-align: middle;
+            text-align: center;
+            padding: 12px;
+        }
+
+        .table img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+
+    .alert-info {
+        background: #1e1e1e;
+        border: 1px solid #FFD700;
+        color: #FFD700;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 18px;
+        margin-top: 40px;
+        box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.2);
+    }
+</style>
+
+
+<div class="container mt-4">
+    <h2> My Orders</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var order in Model)
+        {
+            <div class="order-card">
+                <!-- Order Header -->
+                <div class="order-header">
+                    <div>
+                        <b>Order #@order.OrderID</b> |
+                        Date: @order.OrderDate.ToString("dd-MMM-yyyy") |
+                        Total: ₹@order.TotalAmount
+                    </div>
+                    @if (order.Shipping != null)
+                    {
+                        <span class="badge @(order.Shipping.Status == "Delivered" ? "bg-success" : order.Shipping.Status == "Shipped" ? "bg-info" : "bg-warning")">
+                            @order.Shipping.Status
+                        </span>
+                    }
+                </div>
+
+                <div class="order-body p-3">
+                    <!-- Shipping Details -->
+                    @if (order.Shipping != null)
+                    {
+                        <div class="shipping-box">
+                            <h6>Shipping Details</h6>
+                            <p><b>Method:</b> @order.Shipping.ShippingMethod</p>
+                            <p><b>Estimated Delivery:</b> @order.Shipping.EstimatedDeliveryDate.ToString("dd-MMM-yyyy")</p>
+                            <p><b>Tracking Number:</b> @(string.IsNullOrEmpty(order.Shipping.TrackingNumber) ? "Not Assigned" : order.Shipping.TrackingNumber)</p>
+                            <p><b>Last Updated:</b> @order.Shipping.LastUpdated.ToString("dd-MMM-yyyy HH:mm")</p>
+                        </div>
+                    }
+
+                    <!-- Products Table -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in order.Items)
+                            {
+                                <tr>
+                                    <td>@item.ProductName</td>
+                                    <td>
+                                        <img src="@(string.IsNullOrEmpty(item.ImageURL) ? Url.Content("~/Images/no-image.png") : item.ImageURL)" alt="@item.ProductName" />
+                                    </td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Quantity</td>
+                                    <td><b>₹@(item.Price * item.Quantity)</b></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">
+            🚀 You have not placed any orders yet.
+        </div>
+    }
+</div>

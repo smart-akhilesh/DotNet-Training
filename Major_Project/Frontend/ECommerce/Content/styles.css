@@ -1,0 +1,210 @@
+﻿/* General Body Styling */
+body {
+    background-color: #1A1A1A;
+    color: #E0E0E0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Styling */
+.navbar-inverse {
+    background-color: #000000;
+    border-color: #D4AF37;
+    height:20px;
+   
+}
+
+    .navbar-inverse .navbar-brand,
+    .navbar-inverse .nav > li > a {
+        color: #FFFFFF;
+    }
+
+        .navbar-inverse .navbar-brand:hover,
+        .navbar-inverse .nav > li > a:hover {
+            color: #D4AF37;
+        }
+        
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    background-color: #1A1A1A;
+    border: 1px solid #D4AF37;
+}
+
+    .dropdown-menu > li > a {
+        color: #E0E0E0;
+    }
+
+        .dropdown-menu > li > a:hover {
+            background-color: #D4AF37;
+            color: #000000;
+        }
+
+/* Navbar Text */
+.navbar-text {
+    color: #D4AF37;
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn-default {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+    color: #000000;
+}
+
+    .btn-default:hover {
+        background-color: #E0E0E0;
+        color: #000000;
+    }
+
+/* Footer Styling */
+footer {
+    color: #E0E0E0;
+    text-align: center;
+    padding: 10px;
+    background-color: #000000;
+    border-top: 1px solid #D4AF37;
+}
+
+/* Horizontal Rule */
+hr {
+    border-top: 1px solid #D4AF37;
+}
+
+/* Welcome Banner Styling */
+.welcome-banner {
+    background-color: #000000;
+    padding: 30px 15px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #D4AF37;
+    text-align: center;
+}
+
+.sparkle-text {
+    font-size: 36px;
+    font-weight: bold;
+    color: #D4AF37;
+    text-shadow: 0 0 5px #D4AF37, 0 0 10px #D4AF37;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0% {
+        text-shadow: 0 0 5px #D4AF37, 0 0 10px #D4AF37;
+    }
+
+    50% {
+        text-shadow: 0 0 15px #FFFFFF, 0 0 20px #D4AF37;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #D4AF37, 0 0 10px #D4AF37;
+    }
+}
+
+/*.welcome {
+    background-color: #D4AF37;
+    margin-top: 20px;
+    color: #000000;
+    text-align:center;
+    border-radius:10px;
+    padding:5px;
+    margin-bottom:10px;
+}
+*/
+.welcome {
+    background-color: #D4AF37;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    height: 60px;
+    box-shadow: 0 0 10px #D4AF37;
+}
+
+.welcome-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    white-space: nowrap;
+    animation: scrollText 15s linear infinite, sparkle 2s infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        text-shadow: 0 0 5px #FFFFFF, 0 0 10px #D4AF37;
+    }
+
+    50% {
+        text-shadow: 0 0 15px #FFFFFF, 0 0 20px #D4AF37;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #FFFFFF, 0 0 10px #D4AF37;
+    }
+}
+
+.scroll {
+    position: absolute;
+    /*width: 100%;
+    height: 100%;*/
+    font-size: 18px;
+    color: #FFFFFF;
+    white-space: nowrap;
+    animation: scrollText 15s linear infinite, sparkle 2s infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        text-shadow: 0 0 5px #FFFFFF, 0 0 10px #D4AF37;
+    }
+
+    50% {
+        text-shadow: 0 0 15px #FFFFFF, 0 0 20px #D4AF37;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #FFFFFF, 0 0 10px #D4AF37;
+    }
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+    .navbar .logo img {
+        height: 40px;
+        margin-right: 15px;
+    }
+
+.navbar .greeting {
+    font-size: 18px;
+    font-weight: 500;
+}

@@ -1,0 +1,44 @@
+﻿@model ECommerce.Models.RegisterModel
+@{
+    ViewBag.Title = "Signin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Full-page flex container with black background -->
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <!-- Yellow card container -->
+    <div style="background-color: #D4AF37; color: black; border-radius: 15px; padding: 40px; width: 100%; max-width: 420px; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+        <h3 class="text-center mb-4">Signin</h3>
+
+        @using (Html.BeginForm("Signin", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("Role", ViewBag.Role as string)
+
+            <p class="text-center"><strong>Signing in as:</strong> @ViewBag.Role</p>
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(m => m.Username)
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Enter username" })
+                @Html.ValidationMessageFor(m => m.Username)
+            </div>
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter password" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+
+            <div style="display: flex; justify-content: center;margin-bottom:10px;">
+                <button type="submit" class="btn btn-dark mt-4" style="width: 100px; background-color: black; color: white;">
+                    Login
+                </button>
+            </div>
+
+            <div class="text-center mt-3">
+                @Html.ActionLink("Forgot Password?", "Index", "ForgotPassword", new { role = @ViewBag.Role }, new { @style = "color: black;" })
+            </div>
+
+        }
+    </div>
+</div>

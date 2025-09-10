@@ -1,0 +1,63 @@
+﻿@model ECommerce.Models.RegisterModel
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Profile</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success"> @ViewBag.Message </div>
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <script>
+        alert('@TempData["AlertMessage"]');
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Username (cannot be changed)</label>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label>Phone Number</label>
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+}
+
+<br />
+
+<!-- Delete Account Button -->
+@using (Html.BeginForm("DeleteAccount", "Account", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete your account? This action cannot be undone.');" }))
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Delete Account</button>
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")

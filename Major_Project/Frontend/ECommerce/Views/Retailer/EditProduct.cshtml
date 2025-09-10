@@ -1,0 +1,48 @@
+﻿@model ECommerce.Models.Product
+
+@{
+    ViewBag.Title = "Edit Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Product</h2>
+
+@using (Html.BeginForm("EditProduct", "Retailer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken() <!-- Add this line -->
+
+    @Html.HiddenFor(m => m.ProductID)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", step = "0.01" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.QuantityAvailable)
+        @Html.TextBoxFor(m => m.QuantityAvailable, new { @class = "form-control", type = "number" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RemainingQuantity)
+        @Html.TextBoxFor(m => m.RemainingQuantity, new { @class = "form-control", type = "number" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ImageURL)
+        @Html.TextBoxFor(m => m.ImageURL, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    @Html.ActionLink("Cancel", "MyProducts", null, new { @class = "btn btn-secondary" })
+}

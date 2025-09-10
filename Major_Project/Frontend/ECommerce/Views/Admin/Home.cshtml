@@ -1,0 +1,136 @@
+﻿<!--@model List<ECommerce.Models.AdminFunction>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1A1A1A;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000000;
+            color: #D4AF37;
+            padding: 15px 30px;
+        }
+
+            .navbar .logo {
+                display: flex;
+                align-items: center;
+            }
+
+                .navbar .logo img {
+                    height: 40px;
+                    margin-right: 15px;
+                }
+
+            .navbar .greeting {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .navbar .logout a {
+                color: #E0E0E0;
+                text-decoration: none;
+                background-color: #e74c3c;
+                padding: 8px 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .navbar .logout a:hover {
+                    background-color: #c0392b;
+                }
+
+        /* Grid styles */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            background-color: #1A1A1A;
+            padding: 50px;
+        }
+
+        /*.card {
+            background-color: #D4AF37;
+            color: black;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+            .card:hover {
+                box-shadow: 2px 4px 4px #D4AF37;
+            }*/
+        .card {
+            background-color: #D4AF37;
+            color: black;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            transition: box-shadow 0.4s ease, transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+            .card:hover {
+                box-shadow: 0 0 10px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.4);
+                transform: translateY(-2px);
+            }
+
+            /* Optional: subtle shimmer line on hover */
+            .card::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                transform: skewX(-20deg);
+                transition: left 0.6s ease;
+                z-index: 0;
+            }
+
+            .card:hover::after {
+                left: 100%;
+            }
+    </style>
+</head>
+<body>-->
+
+    <!-- Navbar -->
+    <!--<div class="navbar">
+        <div class="logo">
+            <img src="~/Content/logo1..jpg" alt="Logo" />
+            <div class="greeting">FlipNShop</div>
+        </div>
+
+        <div class="logout" style="display: flex; align-items: center; gap: 15px;">
+            <div class="greeting">Hello @Session["Username"]</div>
+            <a href="@Url.Action("Logout", "Account")">Logout</a>
+        </div>
+
+    </div>-->
+
+    <!-- Grid of Admin Functions -->
+    <!--<div class="grid-container">
+        @foreach (var function in Model)
+        {
+            <div class="card" onclick="location.href='@function.ActionUrl'">
+                <h3>@function.Name</h3>
+            </div>
+        }
+    </div>
+
+</body>
+</html>-->

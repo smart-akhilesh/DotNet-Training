@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c34f986fc9284a869b02c711b604347e" Name="Diagram1">
+        <EntityTypeShape EntityType="majorprojectModel.Admin" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Cart" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Category" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Compare" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.OrderDetail" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Order" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Product" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Retailer" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Review" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.ShippingDetail" Width="1.5" PointX="8.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.User" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="majorprojectModel.Wishlist" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="majorprojectModel.FK__Cart__ProductID__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Cart__UserID__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Products__Catego__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Compare__Product__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Compare__UserID__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__OrderDeta__Order__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__OrderDeta__Produ__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Orders__UserID__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__ShippingD__Order__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Products__Retail__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Reviews__Product__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Wishlist__Produc__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Reviews__UserID__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="majorprojectModel.FK__Wishlist__UserID__571DF1D5" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="majorprojectModel.OrderAddress" Width="1.5" PointX="8.25" PointY="11" />
+        <AssociationConnector Association="majorprojectModel.FK__OrderAddr__Order__17036CC0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,104 @@
+﻿@model ECommerce.DTO.CheckoutDTO
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
+    <div class="card shadow-lg rounded-4 border-0 w-75 max-w-900" style="background-color: #1c1c1c;">
+        <!-- Card Header -->
+        <div class="card-header bg-dark text-white text-center rounded-top-4 py-4">
+            <h1 class="mb-0"><i class="bi bi-bag-check-fill me-2"></i>Checkout</h1>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-5">
+            @using (Html.BeginForm("PlaceOrder", "Order", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Billing Address -->
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.BillingAddress, new { @class = "form-label fw-bold text-white" })
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark text-white"><i class="bi bi-house-fill"></i></span>
+                      
+                        @Html.TextBoxFor(m => m.BillingAddress, new { @class = "form-control bg-dark text-white border-secondary w-100", placeholder = "Enter your billing address", required = "required" })
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.BillingAddress, "", new { @class = "text-danger small mt-1" })
+                </div>
+
+                <!-- Shipping Address -->
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.ShippingAddress, new { @class = "form-label fw-bold text-white" })
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark text-white"><i class="bi bi-truck"></i></span>
+                        @Html.TextBoxFor(m => m.ShippingAddress, new { @class = "form-control bg-dark text-white border-secondary w-100", placeholder = "Enter your shipping address" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.ShippingAddress, "", new { @class = "text-danger small mt-1" })
+                </div>
+
+                <!-- Payment Method Dropdown -->
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.PaymentMethod, new { @class = "form-label fw-bold text-white" })
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark text-white"><i class="bi bi-credit-card-2-front-fill"></i></span>
+                        @Html.DropDownListFor(m => m.PaymentMethod,
+                            new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Cash", Value = "Cash" },
+                                new SelectListItem { Text = "Card", Value = "Card" }
+                            }, "Value", "Text"),
+                            "Select Payment Method",
+                            new { @class = "form-select w-100", @style = "color:black;" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.PaymentMethod, "", new { @class = "text-danger small mt-1" })
+                </div>
+
+                <!-- Submit Button (Half Width) -->
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-warning btn-lg rounded-pill shadow-sm w-50">
+                        <i class="bi bi-check2-circle me-2"></i>Place Order
+                    </button>
+                </div>
+            }
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer text-center bg-dark text-white rounded-bottom-4 py-3">
+            <small>Secure checkout with multiple payment options</small>
+        </div>
+    </div>
+</div>
+
+<!-- Styles -->
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        box-shadow: none;
+        border-color: #FFD700; /* Gold border on focus */
+    }
+
+    .max-w-900 {
+        max-width: 900px;
+    }
+
+    
+    
+</style>

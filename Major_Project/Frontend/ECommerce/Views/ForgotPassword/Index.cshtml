@@ -1,0 +1,60 @@
+﻿@model ECommerce.Models.ForgotPasswordViewModel
+@{
+    Layout = "~/Views/Shared/_ForgotPasswordLayout.cshtml";
+    ViewBag.Title = "Forgot Password";
+}
+
+<form action="@Url.Action("Index", "ForgotPassword")" method="post">
+    @Html.AntiForgeryToken()
+
+    <!-- Step 1: Username/Email -->
+    <div class="form-group mt-3">
+        @Html.LabelFor(m => m.UsernameOrEmail, new { @style = "font-weight:600;" })
+        @Html.TextBoxFor(m => m.UsernameOrEmail, new { @class = "form-control", placeholder = "Enter username or email" })
+        @Html.ValidationMessageFor(m => m.UsernameOrEmail, "", new { @class = "text-danger small" })
+    </div>
+
+    <!-- Step 2: OTP & Passwords -->
+    @if (Model != null && Model.IsStep2)
+    {
+        <div class="form-group mt-3">
+            @Html.LabelFor(m => m.OTP, new { @style = "font-weight:600;" })
+            @Html.TextBoxFor(m => m.OTP, new { @class = "form-control", placeholder = "Enter OTP" })
+            @Html.ValidationMessageFor(m => m.OTP, "", new { @class = "text-danger small" })
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(m => m.NewPassword, new { @style = "font-weight:600;" })
+            @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control", placeholder = "Enter new password" })
+            @Html.ValidationMessageFor(m => m.NewPassword, "", new { @class = "text-danger small" })
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @style = "font-weight:600;" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm new password" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger small" })
+        </div>
+    }
+
+    @Html.HiddenFor(m => m.IsStep2)
+
+    <!-- Info Message -->
+    @if (Model != null && !string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-dark text-center mt-3 rounded-3">
+            <i class="bi bi-info-circle-fill me-2"></i> @Model.Message
+        </div>
+    }
+
+    <!-- Submit Button -->
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-custom px-4 py-2">
+            @(Model != null && Model.IsStep2 ? "Reset Password" : "Send OTP")
+        </button>
+    </div>
+
+    <!-- Back to Signin -->
+    <div class="text-center mt-3">
+        @Html.ActionLink("Back to Signin", "Signin", "Account", new { role = "User" }, new { @style = "color: black; font-weight:600;" })
+    </div>
+</form>

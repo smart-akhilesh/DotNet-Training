@@ -1,0 +1,165 @@
+﻿@model List<ECommerce.DTO.ProductViewDTO>
+
+@{
+    ViewBag.Title = "My Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 30px 0;
+        font-weight: 700;
+        color: #FFD700;
+        text-shadow: 1px 1px 5px #000;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 12px;
+        background-color: #1c1c1c;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    thead th {
+        background-color: #222;
+        color: #FFD700;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    tbody tr {
+        background-color: #1a1a1a;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+        tbody tr:hover {
+            background-color: #2a2a2a;
+            transform: scale(1.01);
+        }
+
+    td img {
+        border-radius: 10px;
+        max-width: 80px;
+        max-height: 80px;
+        border: 2px solid #FFD700;
+        padding: 10px;
+        background-color: #fff; 
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        td img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #FFD700;
+        }
+
+
+    .btn {
+        margin: 2px;
+        border-radius: 25px;
+        padding: 8px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+
+    .btn-warning {
+        background: linear-gradient(45deg, #FFC107, #FFB300);
+        color: #000;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background: linear-gradient(45deg, #FFB300, #FFA000);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+    .btn-danger {
+        background: linear-gradient(45deg, #E57373, #F44336);
+        color: #fff;
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background: linear-gradient(45deg, #F44336, #D32F2F);
+            transform: translateY(-2px);
+        }
+
+    .no-products {
+        text-align: center;
+        font-size: 18px;
+        margin: 40px 0;
+        color: #FFD700;
+        font-weight: 600;
+        text-shadow: 1px 1px 3px #000;
+    }
+</style>
+
+<h2>My Products</h2>
+
+<div class="table-container">
+    @if (Model != null && Model.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price (₹)</th>
+                    <th>Quantity Available</th>
+                    <th>Remaining Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Url.Content(product.ImageURL ?? "~/Images/no-image.png")" alt="@product.Name" />
+                        </td>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>₹@product.Price</td>
+                        <td>@product.QuantityAvailable</td>
+                        <td>@product.RemainingQuantity</td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditProduct", "Retailer", new { id = product.ProductID }, new { @class = "btn btn-warning" })
+
+                            @Html.ActionLink("Delete", "DeleteProduct", "Retailer", new { productId = product.ProductID }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this product?');" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="no-products">You have not added any products yet.</div>
+    }
+</div>

@@ -1,0 +1,70 @@
+﻿@*@{
+            ViewBag.Title = "Order Success";
+        }
+
+        <h2>✅ Order Placed Successfully!</h2>
+    <p>Your Order ID is <strong>@ViewBag.OrderID</strong>.</p>
+    <p>Thank you for shopping with us!</p>*@
+
+
+@{ ViewBag.Title = "Order Success";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<style>
+    body {
+        background-color: #121212;
+        color: #f1f1f1;
+    }
+
+    .success-container {
+        max-width: 600px;
+        margin: 80px auto;
+        padding: 30px;
+        background-color: #1e1e1e;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+        text-align: center;
+    }
+
+    h2 {
+        color: #FFD700;
+        font-weight: 700;
+        margin-bottom: 20px;
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    strong {
+        color: #FFD700;
+    }
+
+    .btn-home {
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+        padding: 10px 25px;
+        font-weight: bold;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+        .btn-home:hover {
+            background-color: #e6c200;
+            color: #000;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+</style>
+
+<div class="success-container">
+    <h2>Order Placed Successfully!</h2>
+    <p>Your Order ID is <strong>@ViewBag.OrderID</strong>.</p>
+    <p>Thank you for shopping with us!</p>
+    <a href="@Url.Action("Index", "User")" class="btn-home"> Back to Home</a>
+</div>

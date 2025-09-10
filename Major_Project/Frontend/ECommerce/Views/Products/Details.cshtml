@@ -1,0 +1,24 @@
+﻿@model ECommerce.DTO.ProductDTO
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>@Model.Name</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@("https://localhost:44353" + Model.ImageURL)" alt="@Model.Name" class="img-fluid" style="max-height: 300px;" />
+        </div>
+        <div class="col-md-6">
+            <p><strong>Description:</strong> @Model.Description</p>
+            <p><strong>Price:</strong> @Model.Price</p>
+            <p><strong>Available Quantity:</strong> @Model.QuantityAvailable</p>
+
+            <a href="@Url.Action("Add", "AddtoCart", new { id = Model.ProductID })" class="btn btn-success">Add to Cart</a>
+            <a href="@Url.Action("Addtocart", "Products", new { id = Model.ProductID })" class="btn btn-secondary">Add to Wishlist</a>
+            <a href="@Url.Action("Index", "Products")" class="btn btn-outline-dark">Back to Products</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+﻿@model ECommerce.DTO.ProductDTO
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1A1A1A;
+            color: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000000;
+            color: white;
+            padding: 15px 30px;
+        }
+
+            .navbar .logo {
+                display: flex;
+                align-items: center;
+            }
+
+                .navbar .logo img {
+                    height: 40px;
+                    margin-right: 10px;
+                }
+
+            .navbar .greeting {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .navbar .logout {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+                .navbar .logout a {
+                    color: white;
+                    text-decoration: none;
+                    background-color: #e74c3c;
+                    padding: 8px 16px;
+                    border-radius: 5px;
+                    transition: background-color 0.3s ease;
+                }
+
+                    .navbar .logout a:hover {
+                        background-color: #c0392b;
+                    }
+
+        .form-container {
+            width: 60%;
+            margin: 40px auto;
+            background-color: #000;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        h2 {
+            text-align: center;
+            color: #D4AF37;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #D4AF37;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #1A1A1A;
+            color: #fff;
+        }
+
+        .btn-success {
+            background-color: #D4AF37;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+        }
+
+            .btn-success:hover {
+                background-color: #bfa133;
+            }
+
+        .alert {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #2ecc71;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="~/Content/logo1..jpg" alt="Logo" />
+            <div class="greeting">FlipNShop</div>
+        </div>
+        <div class="logout">
+            <div class="greeting">Hello @Session["Username"]</div>
+            <a href="@Url.Action("Logout", "Account")">Logout</a>
+        </div>
+    </div>
+
+    <!-- Product Form -->
+    <div class="form-container">
+        <h2>Add New Product</h2>
+
+        @using (Html.BeginForm("AddProduct", "Retailer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <label>Product Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(m => m.Description)
+            </div>
+
+            <div class="form-group">
+                <label>Price</label>
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", step = "0.01" })
+                @Html.ValidationMessageFor(m => m.Price)
+            </div>
+
+            <div class="form-group">
+                <label>Quantity Available</label>
+                @Html.TextBoxFor(m => m.QuantityAvailable, new { @class = "form-control", type = "number", min = "1" })
+                @Html.ValidationMessageFor(m => m.QuantityAvailable)
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                @Html.DropDownListFor(m => m.CategoryID, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "Select Category", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CategoryID)
+            </div>
+
+
+            <div class="form-group">
+                <label>Image URL</label>
+                @Html.TextBoxFor(m => m.ImageURL, new { @class = "form-control" })
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Product</button>}
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert">
+                @TempData["Message"]
+            </div>}
+    </div>
+
+</body>
+</html>
+

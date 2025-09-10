@@ -1,0 +1,220 @@
+﻿@model List<ECommerce.Models.UserViewModel>
+@if (TempData["AlertMessage"] != null)
+{
+    <script>
+        alert('@TempData["AlertMessage"]');
+    </script>
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            background-color: #1A1A1A;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #D4AF37;
+            padding: 15px 30px;
+        }
+
+            .navbar .logo {
+                display: flex;
+                align-items: center;
+            }
+
+                .navbar .logo img {
+                    height: 40px;
+                    margin-right: 15px;
+                }
+
+            .navbar .greeting {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .navbar .logout a {
+                color: #E0E0E0;
+                text-decoration: none;
+                background-color: #e74c3c;
+                padding: 8px 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .navbar .logout a:hover {
+                    background-color: #c0392b;
+                }
+
+        h2 {
+            text-align: center;
+            color: #D4AF37;
+            margin-top: 30px;
+        }
+
+        .search-form {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+            .search-form input[type="text"] {
+                padding: 10px;
+                width: 300px;
+                border-radius: 5px;
+                border: none;
+                margin-right: 10px;
+            }
+
+            .search-form button {
+                padding: 10px 20px;
+                background-color: #D4AF37;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                color: black;
+            }
+
+                .search-form button:hover {
+                    background-color: #bfa133;
+                }
+
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #000;
+            color: #D4AF37;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #D4AF37;
+            text-align: center;
+        }
+
+        th {
+            background-color: #222;
+        }
+
+        .action-links a {
+            margin-right: 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .delete-btn:hover {
+                background-color: #c0392b;
+            }
+
+        .activate-btn {
+            background-color: #2ecc71; /* Green */
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .activate-btn:hover {
+                background-color: #27ae60;
+            }
+
+        .deactivate-btn {
+            background-color: #e74c3c; /* Red */
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .deactivate-btn:hover {
+                background-color: #c0392b;
+            }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="~/Content/logo1..jpg" alt="Logo" />
+            <div class="greeting">FlipNShop</div>
+        </div>
+
+        <div class="logout" style="display: flex; align-items: center; gap: 15px;">
+            <div class="greeting">Hello @Session["Username"]</div>
+            <a href="@Url.Action("Logout", "Account")">Logout</a>
+        </div>
+    </div>
+
+    <h2>Manage Users</h2>
+
+    <!-- Search Bar -->
+    <div class="search-form">
+        @using (Html.BeginForm("ManageUsers", "Admin", FormMethod.Post))
+        {
+            <input type="text" name="searchTerm" placeholder="Search by username or email" />
+            <button type="submit">Search</button>
+        }
+    </div>
+
+    <!-- User Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>@user.Address</td>
+                    <td>@user.PhoneNumber</td>
+                    <td class="action-links" style="display: flex; justify-content: center; align-items: center; gap: 15px;">
+                        <a href="@Url.Action("ViewUserDetails", "Admin", new { id = user.UserId })">View Details</a>
+
+                        @using (Html.BeginForm("Activation", "Admin", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to change this user\'s status?');", @style = "margin: 0;" }))
+                        {
+                            @Html.Hidden("id", user.UserId)
+                            <button type="submit" class="@(user.IsActive ? "deactivate-btn" : "activate-btn")">
+                                @(user.IsActive ? "Deactivate" : "Activate")
+                            </button>
+                        }
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+</html>
